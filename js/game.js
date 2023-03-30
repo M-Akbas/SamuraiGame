@@ -1,15 +1,10 @@
 let canvas;
-let character = new Image();
-
+let ctx;
+let world = new World();
 
 function init(){
     canvas = document.getElementById('canvas')
-    let ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
 
-    character.src = "hero/sprites/standing/tile000.png";
-
-    setTimeout(function(){
-        ctx.drawImage(character, 20, 20, 50, 150);
-    }, 2000)
-    
+    console.log('My Character is' , world.character);
 }

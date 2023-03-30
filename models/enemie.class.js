@@ -1,0 +1,3 @@
+class Enemie extends MovableObject { 
+   
+}
