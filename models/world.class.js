@@ -22,13 +22,12 @@ class World {
     );
 
     this.enemies.forEach((enemy) => {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.drawImage(
-        this.enemy.img,
-        this.enemy.x,
-        this.enemy.y,
-        this.enemy.height,
-        this.enemy.width
+        enemy.img,
+        enemy.x,
+        enemy.y,
+        enemy.height,
+        enemy.width
       );
     });
     // draw triggerd
