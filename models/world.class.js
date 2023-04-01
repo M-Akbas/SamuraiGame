@@ -10,8 +10,9 @@ class World {
     new Background("oak_woods/background/background_layer_2.png", 0, 0),
   ];
 
-  objects = [
-    new Object('')
+  floor = [
+    new Floor('oak_woods/floor/tile011.png', 0 , 0)
+    
   ]
 
   constructor(canvas) {
@@ -24,6 +25,7 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.addObjectsToMap(this.background);
+    this.addObjectsToMap(this.floor);
     this.addObjectsToMap(this.enemies);
 
     this.addToMap(this.character);
