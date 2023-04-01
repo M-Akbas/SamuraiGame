@@ -4,6 +4,7 @@ class World {
   enemies = [new Enemie(), new Enemie(), new Enemie()];
   canvas;
   ctx;
+  
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
