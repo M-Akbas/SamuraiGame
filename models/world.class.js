@@ -11,7 +11,7 @@ class World {
   ];
 
   floor = [
-    new Floor('oak_woods/floor/tile011.png', 0 , 0)
+    new Floor(),
     
   ]
 
