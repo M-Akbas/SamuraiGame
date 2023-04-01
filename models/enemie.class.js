@@ -1,6 +1,6 @@
 class Enemie extends MovableObject { // Enemie extends classes from MovableObject
     
-    y= 210;
+    y= 218;
     width = 210;
     height = 200;
     

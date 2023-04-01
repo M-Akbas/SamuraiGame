@@ -12,7 +12,11 @@ class World {
 
   floor = [
     new Floor(),
+  
     
+  ]
+  secondFloor = [
+    new SecondFloor(),
   ]
 
   constructor(canvas) {
@@ -26,6 +30,8 @@ class World {
 
     this.addObjectsToMap(this.background);
     this.addObjectsToMap(this.floor);
+    this.addObjectsToMap(this.secondFloor);
+    
     this.addObjectsToMap(this.enemies);
 
     this.addToMap(this.character);
@@ -38,7 +44,7 @@ class World {
   }
 
   addToMap(mo) {
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.height, mo.width);
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
   }
 
   addObjectsToMap(objects) {
