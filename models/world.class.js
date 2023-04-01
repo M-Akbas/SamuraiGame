@@ -4,7 +4,15 @@ class World {
   enemies = [new Enemie(), new Enemie(), new Enemie()];
   canvas;
   ctx;
-  background = [new Background("oak_woods/background/background_layer_1.png", 0, 0)];
+
+  background = [
+    new Background("oak_woods/background/background_layer_1.png", 0, 0),
+    new Background("oak_woods/background/background_layer_2.png", 0, 0),
+  ];
+
+  objects = [
+    new Object('')
+  ]
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -19,7 +27,6 @@ class World {
     this.addObjectsToMap(this.enemies);
 
     this.addToMap(this.character);
-
 
     // Draw() wird immer wieder getriggerd
     self = this;
