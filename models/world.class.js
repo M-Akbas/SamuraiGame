@@ -10,19 +10,20 @@ class World {
     new Background("oak_woods/background/background_layer_2.png", 0, 0),
   ];
 
-  floor = [
-    new Floor(),
-  
-    
-  ]
-  secondFloor = [
-    new SecondFloor(),
-  ]
+  floor = [new Floor()];
+  secondFloor = [new SecondFloor()];
+  keyboard;
 
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
+    this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.character.world = this;
   }
 
   draw() {
@@ -31,7 +32,7 @@ class World {
     this.addObjectsToMap(this.background);
     this.addObjectsToMap(this.floor);
     this.addObjectsToMap(this.secondFloor);
-    
+
     this.addObjectsToMap(this.enemies);
 
     this.addToMap(this.character);
