@@ -1,6 +1,6 @@
 class Character extends MovableObject {
   // Character extends classes from MovableObject
-
+  speed = 5;
   y = 165;
   Img_Running = [
     "hero/sprites/run/tile000.png",
@@ -23,7 +23,25 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.right) {
+      if (this.world.keyboard.right){
+        this.x += this.speed;
+        this.otherDirection = false;
+      }
+    }, 1000 / 60);
+
+    setInterval(() => {
+      if (this.world.keyboard.left){
+        this.x -= this.speed;
+        this.otherDirection = true;
+      }
+    }, 1000 / 60);
+
+
+
+    setInterval(() => {
+      if (this.world.keyboard.right || this.world.keyboard.left) {
+      
+        // run animation
         let i = this.currentImage % this.Img_Running.length;
         let path = this.Img_Running[i];
         this.img = this.imageCache[path];
