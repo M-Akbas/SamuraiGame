@@ -1,6 +1,6 @@
 class Floor extends MovableObject{
 
-    x = - 40;
+    x = - 140;
     y = 360;
 
     height = 180;

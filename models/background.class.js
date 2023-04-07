@@ -1,7 +1,7 @@
 class Background extends MovableObject{ 
     
-    width = 720; // width ist height? 
-    height = 480; // height ist width? 
+    width = 720; 
+    height = 480;
 
 
     constructor(imagePath , x, y){
