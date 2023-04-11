@@ -1,12 +1,14 @@
-class SecondFloor extends MovableObject{
-  
+class Lamps extends MovableObject {
 
-    height = 100;
-    width = 650;
+    height = 120; 
+    width = 50; 
+
+   
 
     constructor(imagePath , x, y){
         super().loadImage(imagePath);
         this.y = y;
         this.x = x;
     }
+    
 }

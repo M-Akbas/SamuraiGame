@@ -1,12 +1,14 @@
-class SecondFloor extends MovableObject{
-  
+class Rock extends MovableObject {
 
-    height = 100;
-    width = 650;
+    height = 40; 
+    width = 70; 
+
+   
 
     constructor(imagePath , x, y){
         super().loadImage(imagePath);
         this.y = y;
         this.x = x;
     }
+    
 }
