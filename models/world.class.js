@@ -1,52 +1,20 @@
 class World {
   // Everthing what in world contains
   character = new Character();
-  enemies = [new Enemie(), new Enemie(), new Enemie()];
+  
+  enemies = level1.enemies;
+  background = level1.background;
+  floor = level1.floor;
+  secondFloor = level1.secondfloor;
+  fence = level1.fence;
+  lamps = level1.lamps;
+  rocks = level1.rocks;
+  shop = level1.shop;
+  
   canvas;
   ctx;
   keyboard;
   camera_x = 0;
-
-  background = [
-    new Background("oak_woods/background/background_layer_1.png", -100, 0),
-    new Background("oak_woods/background/background_layer_2.png", -100, 0),
-    new Background("oak_woods/background/background_layer_1.png", 620, 0),
-    new Background("oak_woods/background/background_layer_2.png", 620, 0),
-    new Background("oak_woods/background/background_layer_1.png", 1240, 0),
-    new Background("oak_woods/background/background_layer_2.png", 1240, 0),
-  ];
-
-  floor = [
-    new Floor("oak_woods/floor/mainFloor.png", -130, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 500, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 430, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 830, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 930, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 1240, 360),
-    new Floor("oak_woods/floor/mainFloor.png", 1300, 360),
-  ];
-  secondFloor = [
-    new SecondFloor("oak_woods/floor/secondFloor.png", -50, 405),
-    new SecondFloor("oak_woods/floor/secondFloor.png", -50, 405),
-    new SecondFloor("oak_woods/floor/secondFloor.png", 1200, 405),
-  ];
-
-  fence = [
-    new Fence('oak_woods/decorations/fence_1.png', -50 , 370)
-  ];
-
-  lamps = [
-    new Lamps('oak_woods/decorations/rock_1.png', -130 , 300),
-    new Lamps('oak_woods/decorations/sign.png', -90 , 300),
-    new Lamps('oak_woods/decorations/lamp.png' , 700, 300),
-    new Lamps('oak_woods/decorations/sign.png' , 710, 300)
-  ]
-
-  rocks = [
-    new Rock('oak_woods/decorations/rock_2.png', 50, 379),
-    new Rock('oak_woods/decorations/rock_2.png', 640, 379),
-
-  ]
   
 
   constructor(canvas, keyboard) {
@@ -71,6 +39,7 @@ class World {
     this.addObjectsToMap(this.secondFloor);
     this.addObjectsToMap(this.lamps);
     this.addObjectsToMap(this.rocks);
+    this.addObjectsToMap(this.shop);
 
     this.addObjectsToMap(this.enemies);
 
