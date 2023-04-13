@@ -2,8 +2,13 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: black;
 }
 
 canvas {
     background-color: black;
+}
+h1{
+    color: whitesmoke;
+    font-size: 100px;
 }
