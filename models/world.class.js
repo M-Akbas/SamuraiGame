@@ -1,15 +1,8 @@
 class World {
   // Everthing what in world contains
   character = new Character();
-
-  enemies = level1.enemies;
-  background = level1.background;
-  floor = level1.floor;
-  secondFloor = level1.secondFloor;
-  fence = level1.fence;
-  lamps = level1.lamps;
-  rocks = level1.rocks;
-  shop = level1.shop;
+  level = level1;
+  
 
   canvas;
   ctx;
@@ -32,15 +25,15 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
 
     this.ctx.translate(this.camera_x, 0);
-    this.addObjectsToMap(this.background);
-    this.addObjectsToMap(this.fence);
-    this.addObjectsToMap(this.floor);
-    this.addObjectsToMap(this.secondFloor);
-    this.addObjectsToMap(this.lamps);
-    this.addObjectsToMap(this.rocks);
-    this.addObjectsToMap(this.shop);
+    this.addObjectsToMap(this.level.background);
+    this.addObjectsToMap(this.level.fence);
+    this.addObjectsToMap(this.level.floor);
+    this.addObjectsToMap(this.level.secondFloor);
+    this.addObjectsToMap(this.level.lamps);
+    this.addObjectsToMap(this.level.rocks);
+    this.addObjectsToMap(this.level.shop);
     
-    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.level.enemies);
 
     this.addToMap(this.character);
     this.ctx.translate(-this.camera_x, 0);

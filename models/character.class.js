@@ -13,26 +13,31 @@ class Character extends MovableObject {
     "hero/sprites/run/tile007.png",
   ];
   world;
+  walking_sound = new Audio('audio/run/run.mp3');
 
   constructor() {
     super().loadImage("hero/sprites/standing/tile000.png");
     this.loadImages(this.Img_Running);
-
+    
     this.animate();
   }
 
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.right){
+      this.walking_sound.pause();
+      if (this.world.keyboard.right && this.x < this.world.level.level_end_x){
         this.x += this.speed;
         this.otherDirection = false;
+        this.walking_sound.play();
+        
       }
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.world.keyboard.left){
+      if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
+        this.walking_sound.play();
       }
       this.world.camera_x = -this.x;
     }, 1000 / 60);

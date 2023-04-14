@@ -7,6 +7,7 @@ class Level {
   lamps;
   rocks;
   shop;
+  level_end_x = 1600;
 
   constructor(enemies, background, floor, fence, secondFloor, lamps, rocks, shop){
     this.enemies = enemies; 
