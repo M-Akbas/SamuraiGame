@@ -3,7 +3,6 @@ class World {
   character = new Character();
   level = level1;
   
-
   canvas;
   ctx;
   keyboard;
@@ -14,6 +13,7 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
+    
     this.setWorld();
   }
 
@@ -22,6 +22,7 @@ class World {
   }
 
   draw() {
+    
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
 
     this.ctx.translate(this.camera_x, 0);

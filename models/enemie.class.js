@@ -29,10 +29,7 @@ class Enemie extends MovableObject {
   animate() {
     setInterval(() => {
     
-      let i = this.currentImage % this.Img_Running.length;
-      let path = this.Img_Running[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      this.playAnimation(this.Img_Running);
     }, 200);
   }
 }
