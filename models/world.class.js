@@ -2,7 +2,7 @@ class World {
   // Everthing what in world contains
   character = new Character();
   level = level1;
-  
+  backgroundMusic = new Audio('audio/music/music1.mp3')
   canvas;
   ctx;
   keyboard;
@@ -13,12 +13,16 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
-    
+    this.music();
     this.setWorld();
   }
 
   setWorld() {
     this.character.world = this;
+  }
+
+  music(){
+    this.backgroundMusic.play();
   }
 
   draw() {
