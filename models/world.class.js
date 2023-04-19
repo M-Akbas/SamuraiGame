@@ -8,13 +8,14 @@ class World {
   keyboard;
   camera_x = 0;
 
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
-    this.music();
     this.setWorld();
+    this.music();
   }
 
   setWorld() {

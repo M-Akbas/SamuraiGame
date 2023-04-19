@@ -1,7 +1,7 @@
 class Enemie extends MovableObject {
   // Enemie extends classes from MovableObject
 
-  y = 218;
+  y = 222;
   width = 210;
   height = 200;
   Img_Running = [
@@ -18,7 +18,7 @@ class Enemie extends MovableObject {
     super().loadImage("enemies/skelleton/walk/tile001.png");
     this.loadImages(this.Img_Running);
 
-    this.x = 200 + Math.random() * 500;
+    this.x = 400 + Math.random() * 600;
     this.speed = 0.15 + Math.random() * 0.25;
     this.animate();
     this.moveLeft();
