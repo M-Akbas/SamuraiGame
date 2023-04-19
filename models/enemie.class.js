@@ -24,11 +24,14 @@ class Enemie extends MovableObject {
     this.moveLeft();
   }
 
-  animate() {}
+
 
   animate() {
     setInterval(() => {
-    
+      this.moveLeft();
+    } ,1000 / 60)
+    setInterval(() => {
+      
       this.playAnimation(this.Img_Running);
     }, 200);
   }
