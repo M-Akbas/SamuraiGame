@@ -7,6 +7,7 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  statusbar = new StatusBar();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -18,16 +19,15 @@ class World {
     this.checkCollisions();
   }
 
-
-  checkCollisions(){
+  checkCollisions() {
     setInterval(() => {
-      this.level.enemies.forEach( (enemy) => {
-        if(this.character.isColliding(enemy)){
-          this.character.energy -= 5;
-          console.log('collision with character',  this.character.energy);
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          this.character.hit();
+          this.statusbar.setPercentage(this.character.energy);
         }
-      })
-    } , 200)
+      });
+    }, 200);
   }
   setWorld() {
     this.character.world = this;
@@ -36,6 +36,8 @@ class World {
   music() {
     this.backgroundMusic.play();
   }
+
+ 
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
@@ -48,10 +50,13 @@ class World {
     this.addObjectsToMap(this.level.lamps);
     this.addObjectsToMap(this.level.rocks);
     this.addObjectsToMap(this.level.shop);
-
-    this.addObjectsToMap(this.level.enemies);
-
+    
+    this.ctx.translate(-this.camera_x, 0);
+    this.addToMap(this.statusbar);
+    this.ctx.translate(this.camera_x, 0);
+    
     this.addToMap(this.character);
+    this.addObjectsToMap(this.level.enemies);
     this.ctx.translate(-this.camera_x, 0);
 
     // Draw() wird immer wieder getriggerd

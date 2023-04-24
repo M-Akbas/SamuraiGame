@@ -12,6 +12,7 @@ body {
 body::before {
     content: "";
     position: absolute;
+    background: rgba(0, 0, 0, 0.588); /* Hier können Sie den Wert der Transparenz ändern */
     top: 0;
     left: 0;
     width: 100%;
@@ -29,11 +30,3 @@ h1{
     font-size: 100px;
 }
 
-header {
-    background-color: rgba(15, 12, 16, 0.936);
-    
-    height: 20vh;
-    width: 105vw;
-    color: whitesmoke;
-
-}
