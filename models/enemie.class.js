@@ -14,24 +14,50 @@ class Enemie extends MovableObject {
     "enemies/skelleton/walk/tile000.png",
   ];
 
+  Img_Attacking = [
+    "enemies/skelleton/attack/tile000.png",
+    "enemies/skelleton/attack/tile001.png",
+    "enemies/skelleton/attack/tile002.png",
+    "enemies/skelleton/attack/tile003.png",
+    "enemies/skelleton/attack2/tile000.png",
+    "enemies/skelleton/attack2/tile001.png",
+    "enemies/skelleton/attack2/tile002.png",
+    "enemies/skelleton/attack2/tile003.png",
+
+  ];
+  offset = {
+    top: 100,
+    left: 100,
+    right: 100,
+    bottom: 0,
+  };
   constructor() {
     super().loadImage("enemies/skelleton/walk/tile001.png");
     this.loadImages(this.Img_Running);
-
+    this.loadImages(this.Img_Attacking);
     this.x = 400 + Math.random() * 600;
     this.speed = 0.15 + Math.random() * 0.25;
     this.animate();
-    this.moveLeft();
+    
+   
+    
+    
   }
+  
 
+  animationForEnemie(){
+    this.playAnimation(this.Img_Attacking);
+    
+  }
+  
+ 
 
 
   animate() {
     setInterval(() => {
       this.moveLeft();
-    } ,1000 / 60)
+    }, 1000 / 60);
     setInterval(() => {
-      
       this.playAnimation(this.Img_Running);
     }, 200);
   }

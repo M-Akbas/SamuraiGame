@@ -7,9 +7,10 @@ class Level {
   lamps;
   rocks;
   shop;
+  hearticon;
   level_end_x = 1600;
 
-  constructor(enemies, background, floor, fence, secondFloor, lamps, rocks, shop){
+  constructor(enemies, background, floor, fence, secondFloor, lamps, rocks, shop, hearticon){
     this.enemies = enemies; 
     this.background = background;
     this.floor = floor;
@@ -18,5 +19,6 @@ class Level {
     this.lamps = lamps;
     this.rocks = rocks;
     this.shop = shop;
+    this.hearticon = hearticon;
   }
 }

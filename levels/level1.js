@@ -15,6 +15,7 @@ const level1 = new Level(
     new Background("oak_woods/background/background_layer_1.png", 620 * 4, 0),
     new Background("oak_woods/background/background_layer_2.png", 620 * 4, 0),
   ],
+  [new HeartIcon("healthbar/health.png", 0, 0)],
 
   [
     new Floor("oak_woods/floor/mainFloor.png", -630, 360),

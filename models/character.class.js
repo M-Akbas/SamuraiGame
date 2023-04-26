@@ -56,6 +56,13 @@ class Character extends MovableObject {
     "hero/sprites/takeHit/tile000.png",
     "hero/sprites/takeHit/tile001.png",
   ];
+
+  offset = {
+    top: 130,
+    left: 150,
+    right: 150,
+    bottom: 130
+  };
   world;
   walking_sound = new Audio("audio/run/run.mp3");
   jumping_sound = new Audio("audio/jump/jump1.mp3");
@@ -77,7 +84,10 @@ class Character extends MovableObject {
     this.playAnimation(this.Img_TakeHit);
     this.hurt2_sound.play();
   }
-
+  
+  thisX(){
+    return this.x;
+  }
   animate() {
     setInterval(() => {
       this.walking_sound.pause();

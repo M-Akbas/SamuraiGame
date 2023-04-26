@@ -2,14 +2,10 @@ class DrawableObject {
   img;
   imageCache = {};
   currentImage = 0;
-  x = -100;
+  x = 100;
   y = 200;
   height = 400;
   width = 400;
-
-
-
-
 
   loadImage(path) {
     this.img = new Image();
@@ -26,9 +22,14 @@ class DrawableObject {
       this instanceof Endboss
     ) {
       ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.lineWidth = "4";
+      ctx.strokeStyle = "red";
+      ctx.rect(
+        this.x + this.offset.left,
+        this.y + this.offset.top,
+        this.width - this.offset.left - this.offset.right,
+        this.height - this.offset.top - this.offset.bottom
+      );
       ctx.stroke();
     }
   }
@@ -41,5 +42,3 @@ class DrawableObject {
     });
   }
 }
-
-

@@ -8,7 +8,8 @@ class World {
   keyboard;
   camera_x = 0;
   statusbar = new StatusBar();
-
+  
+  
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -17,6 +18,7 @@ class World {
     this.setWorld();
     this.music();
     this.checkCollisions();
+    this.checkLocation();
   }
 
   checkCollisions() {
@@ -25,10 +27,33 @@ class World {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
+          enemy.animationForEnemie();
+          
+        } else {
+          
         }
       });
-    }, 200);
+    }, 100);
   }
+
+  checkLocation() {
+  setInterval(() => {
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.x !== enemy.x) {            
+        
+        const dx = this.character.x - enemy.x;
+        const distance = Math.abs(dx);
+        const speed = 3; // Geschwindigkeit des Feindes
+        if (distance > 0) {
+          enemy.x += dx * speed  / distance;
+        }
+      } 
+    });
+  }, 50); // kürzere Intervalle für schnellere Bewegung
+}
+
+  
+
   setWorld() {
     this.character.world = this;
   }
@@ -37,11 +62,12 @@ class World {
     this.backgroundMusic.play();
   }
 
+
  
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-
+    
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.background);
     this.addObjectsToMap(this.level.fence);
@@ -53,6 +79,7 @@ class World {
     
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusbar);
+    
     this.ctx.translate(this.camera_x, 0);
     
     this.addToMap(this.character);
@@ -73,6 +100,7 @@ class World {
     mo.draw(this.ctx);
 
     mo.drawFrame(this.ctx);
+    
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
