@@ -8,8 +8,7 @@ class World {
   keyboard;
   camera_x = 0;
   statusbar = new StatusBar();
-  
-  
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -28,29 +27,33 @@ class World {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
           enemy.animationForEnemie();
-          
         } else {
-          
         }
       });
     }, 100);
   }
 
   checkLocation() {
-  setInterval(() => {
-    this.level.enemies.forEach((enemy) => {
-      if (this.character.x !== enemy.x) {            
-        
-        const dx = this.character.x - enemy.x;
-        const distance = Math.abs(dx);
-        const speed = 3; // Geschwindigkeit des Feindes
-        if (distance > 0) {
-          enemy.x += dx * speed  / distance;
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.x !== enemy.x) {
+          const dx = this.character.x - enemy.x;
+          const distance = Math.abs(dx);
+          const speed = enemy.speed;
+          if (dx > 0) {
+            console.log(this.character.x)
+            console.log(enemy.x)
+            enemy.x += (dx * speed * 10) / distance + 1;
+            this.flipImageTEST(enemy);
+          } else {
+            console.log("not true")
+          }
         }
-      } 
-    });
-  }, 50); // kürzere Intervalle für schnellere Bewegung
-}
+      });
+    }, 50);
+  }
+
+  
 
   
 
@@ -62,12 +65,9 @@ class World {
     this.backgroundMusic.play();
   }
 
-
- 
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-    
+
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.background);
     this.addObjectsToMap(this.level.fence);
@@ -76,12 +76,12 @@ class World {
     this.addObjectsToMap(this.level.lamps);
     this.addObjectsToMap(this.level.rocks);
     this.addObjectsToMap(this.level.shop);
-    
+
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusbar);
-    
+
     this.ctx.translate(this.camera_x, 0);
-    
+
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.ctx.translate(-this.camera_x, 0);
@@ -100,7 +100,6 @@ class World {
     mo.draw(this.ctx);
 
     mo.drawFrame(this.ctx);
-    
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
@@ -121,7 +120,7 @@ class World {
   }
 
   flipImageBack(mo) {
-    mo.x = mo.x * -1;
     this.ctx.restore();
+    mo.x = mo.x * -1;
   }
 }

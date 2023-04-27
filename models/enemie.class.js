@@ -27,8 +27,8 @@ class Enemie extends MovableObject {
   ];
   offset = {
     top: 100,
-    left: 100,
-    right: 100,
+    left: 50,
+    right: 50,
     bottom: 0,
   };
   constructor() {
@@ -36,7 +36,7 @@ class Enemie extends MovableObject {
     this.loadImages(this.Img_Running);
     this.loadImages(this.Img_Attacking);
     this.x = 400 + Math.random() * 600;
-    this.speed = 0.15 + Math.random() * 0.25;
+    this.speed = 0.45 + Math.random() * 0.25;
     this.animate();
     
    
