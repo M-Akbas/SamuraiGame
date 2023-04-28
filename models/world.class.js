@@ -8,7 +8,7 @@ class World {
   keyboard;
   camera_x = 0;
   statusbar = new StatusBar();
-
+  heartIcon = new HeartIcon("healthbar/health.png", 10, 20);
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -41,21 +41,17 @@ class World {
           const distance = Math.abs(dx);
           const speed = enemy.speed;
           if (dx > 0) {
-            console.log(this.character.x)
-            console.log(enemy.x)
+            
             enemy.x += (dx * speed * 10) / distance + 1;
-            this.flipImageTEST(enemy);
+            enemy.otherDirection = true;
           } else {
-            console.log("not true")
+            enemy.otherDirection = false;
+            
           }
         }
       });
     }, 50);
   }
-
-  
-
-  
 
   setWorld() {
     this.character.world = this;
@@ -72,15 +68,16 @@ class World {
     this.addObjectsToMap(this.level.background);
     this.addObjectsToMap(this.level.fence);
     this.addObjectsToMap(this.level.floor);
+
+    this.ctx.translate(-this.camera_x, 0);
+    this.addToMap(this.statusbar);
+    this.addToMap(this.heartIcon);
+    this.ctx.translate(this.camera_x, 0);
+
     this.addObjectsToMap(this.level.secondFloor);
     this.addObjectsToMap(this.level.lamps);
     this.addObjectsToMap(this.level.rocks);
     this.addObjectsToMap(this.level.shop);
-
-    this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.statusbar);
-
-    this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
