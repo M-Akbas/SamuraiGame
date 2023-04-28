@@ -1,6 +1,11 @@
 class World {
   // Everthing what in world contains
-
+  swordSounds = [
+    new Audio("audio/hits/hit1.mp3"),
+    new Audio("audio/hits/hit2.mp3"),
+    new Audio("audio/hits/hit3.mp3")
+  ];
+  
   character = new Character();
   level = level1;
   backgroundMusic = new Audio("audio/music/music1.mp3");
@@ -28,10 +33,12 @@ class World {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
+          this.swordSounds.forEach(sound => sound.play());
           enemy.animationForEnemie();
         }
         if (this.character.isColliding(endboss)) {
           endboss.animationForEndboss();
+          this.swordSounds.forEach(sound => sound.play());
         }
       });
     }, 100);
