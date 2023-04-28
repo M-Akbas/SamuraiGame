@@ -1,6 +1,6 @@
 class Level {
   enemies;
-
+  endboss;
   background;
   floor;
   secondFloor;
@@ -13,6 +13,7 @@ class Level {
 
   constructor(
     enemies,
+    endboss,
     background,
     floor,
     fence,
@@ -23,7 +24,7 @@ class Level {
     hearticon
   ) {
     this.enemies = enemies;
-
+    this.endboss = endboss;
     this.background = background;
     this.floor = floor;
     this.fence = fence;

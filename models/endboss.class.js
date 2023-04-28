@@ -34,7 +34,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.Img_Attack);
         this.x = 1600; 
         this.animate();
-        this.moveLeft();
+        
       }
 
       animate() {
@@ -44,5 +44,9 @@ class Endboss extends MovableObject {
         setInterval(() => {
           this.playAnimation(this.Img_Running);
         }, 200);
+      }
+
+      animationForEndboss(){
+        this.playAnimation(this.Img_Attack);
       }
 }

@@ -1,5 +1,6 @@
 class World {
   // Everthing what in world contains
+
   character = new Character();
   level = level1;
   backgroundMusic = new Audio("audio/music/music1.mp3");
@@ -21,13 +22,16 @@ class World {
   }
 
   checkCollisions() {
+    let endboss = this.level.endboss[0];
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
           enemy.animationForEnemie();
-        } else {
+        }
+        if (this.character.isColliding(endboss)) {
+          endboss.animationForEndboss();
         }
       });
     }, 100);
@@ -41,15 +45,27 @@ class World {
           const distance = Math.abs(dx);
           const speed = enemy.speed;
           if (dx > 0) {
-            
             enemy.x += (dx * speed * 10) / distance + 1;
             enemy.otherDirection = true;
           } else {
             enemy.otherDirection = false;
-            
           }
         }
       });
+
+      // Check end boss location
+      const endboss = this.level.endboss[0];
+      if (this.character.x !== endboss.x) {
+        const dx = this.character.x - endboss.x;
+        const distance = Math.abs(dx);
+        const speed = endboss.speed;
+        if (dx > 0) {
+          endboss.x += (dx * speed * 10) / distance + 1;
+          endboss.otherDirection = true;
+        } else {
+          endboss.otherDirection = false;
+        }
+      }
     }, 50);
   }
 
@@ -81,6 +97,7 @@ class World {
 
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.ctx.translate(-this.camera_x, 0);
 
     // Draw() wird immer wieder getriggerd
