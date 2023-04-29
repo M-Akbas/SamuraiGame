@@ -26,22 +26,36 @@ class Enemie extends MovableObject {
     "enemies/skelleton/attack2/tile003.png",
 
   ];
+  Img_Dead = [
+    "enemies/skelleton/dead/tile000.png",
+    "enemies/skelleton/dead/tile000.png",
+    "enemies/skelleton/dead/tile000.png",
+    "enemies/skelleton/dead/tile000.png",
+  ];
+
   offset = {
     top: 100,
     left: 50,
     right: 50,
     bottom: 0,
   };
-  constructor() {
+  constructor(energy) {
     super().loadImage("enemies/skelleton/walk/tile001.png");
     this.loadImages(this.Img_Running);
     this.loadImages(this.Img_Attacking);
+    this.loadImages(this.Img_Dead);
     this.x = 400 + Math.random() * 600;
     this.speed = 0.45 + Math.random() * 0.25;
+    this.energy = energy; // set the energy value here
     this.animate();
-    
-   
-    
+  }
+  
+  deadAnimation() {
+    this.playAnimation(this.Img_Dead);
+    let lastImage = this.Img_Dead[3];
+    if(lastImage){
+      console.log("dead");
+    }
     
   }
   
@@ -50,8 +64,8 @@ class Enemie extends MovableObject {
     this.playAnimation(this.Img_Attacking);
     
   }
-  hit() {
-    this.energy -= 2;
+  hit(damage) {
+    this.energy -= damage;
     if (this.energy < 0) {
       this.energy = 0;
     }

@@ -3,6 +3,11 @@ class Character extends MovableObject {
   speed = 5;
   y = 5;
   energy = 200;
+  swordSounds = [
+    new Audio("audio/hits/hit1.mp3"),
+    new Audio("audio/hits/hit2.mp3"),
+    new Audio("audio/hits/hit3.mp3")
+  ];
   Img_Running = [
     "hero/sprites/run/tile000.png",
     "hero/sprites/run/tile001.png",
@@ -95,7 +100,7 @@ class Character extends MovableObject {
 
   animationForChar() {
     this.playAnimation(this.Img_TakeHit);
-    this.hurt2_sound.play();
+    
   }
 
   thisX() {
@@ -118,7 +123,7 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.world.keyboard.space) {
         this.playAnimation(this.Img_Attack);
-        
+        this.swordSounds.forEach(sound => sound.play());
         setTimeout(() => {
 
           this.offset.left = 60;

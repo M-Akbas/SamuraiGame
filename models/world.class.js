@@ -39,11 +39,17 @@ class World {
         if(this.character.world.keyboard.space && this.character.isColliding(enemy)){
           console.log("enemy hitted");
           this.level.enemies.forEach((enemy) => {
-            enemy.hit();
+            enemy.hit(2);
             console.log(enemy.energy);
             
-          })
+            
+          });
+          
         }
+        if(enemy.energy == 0){
+          enemy.deadAnimation();
+        }
+       
         if (this.character.isColliding(endboss)) {
           endboss.animationForEndboss();
           this.swordSounds.forEach(sound => sound.play());

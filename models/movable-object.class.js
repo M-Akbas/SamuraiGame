@@ -59,11 +59,17 @@ class MovableObject extends DrawableObject {
  
 
   playAnimation(images) {
-    let i = this.currentImage % this.Img_Running.length;
+    let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
   }
+  
+  stopAnimation(currentImage){
+    currentImage = 0;
+  }
+ 
+
 
   jump() {
     this.speedY = 15;
