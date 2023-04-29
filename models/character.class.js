@@ -2,6 +2,7 @@ class Character extends MovableObject {
   // Character extends classes from MovableObject
   speed = 5;
   y = 5;
+  energy = 200;
   Img_Running = [
     "hero/sprites/run/tile000.png",
     "hero/sprites/run/tile001.png",
@@ -57,11 +58,22 @@ class Character extends MovableObject {
     "hero/sprites/takeHit/tile001.png",
   ];
 
+  Img_Attack = [
+    "hero/sprites/attack/tile000.png",
+    "hero/sprites/attack/tile001.png",
+    "hero/sprites/attack/tile002.png",
+    "hero/sprites/attack/tile003.png",
+    "hero/sprites/attack2/tile000.png",
+    "hero/sprites/attack2/tile001.png",
+    "hero/sprites/attack2/tile002.png",
+    "hero/sprites/attack2/tile003.png",
+  ];
+
   offset = {
     top: 130,
     left: 150,
     right: 150,
-    bottom: 130
+    bottom: 130,
   };
   world;
   walking_sound = new Audio("audio/run/run.mp3");
@@ -76,18 +88,20 @@ class Character extends MovableObject {
     this.loadImages(this.Img_Standing);
     this.loadImages(this.Img_Dead);
     this.loadImages(this.Img_TakeHit);
+    this.loadImages(this.Img_Attack);
     this.applyGravity();
     this.animate();
   }
 
-  animationForChar(){
+  animationForChar() {
     this.playAnimation(this.Img_TakeHit);
     this.hurt2_sound.play();
   }
-  
-  thisX(){
+
+  thisX() {
     return this.x;
   }
+  
   animate() {
     setInterval(() => {
       this.walking_sound.pause();
@@ -102,6 +116,20 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
+      if (this.world.keyboard.space) {
+        this.playAnimation(this.Img_Attack);
+        
+        setTimeout(() => {
+
+          this.offset.left = 60;
+          this.offset.right = 60;
+        } , 50);  
+        
+      }
+      if(!this.world.keyboard.space){
+        this.offset.left = 150;
+        this.offset.right = 150;
+      }
       if (this.world.keyboard.left && this.x > 0) {
         this.moveLeft();
         this.otherDirection = true;
@@ -119,17 +147,15 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
+     
       if (this.isAboveGround()) {
         this.playAnimation(this.Img_Jumping);
-      } 
-      else if (this.world.keyboard.right || this.world.keyboard.left) {
+      } else if (this.world.keyboard.right || this.world.keyboard.left) {
         // run animation
         this.playAnimation(this.Img_Running);
-      } 
-      else if (this.isDead()) {
+      } else if (this.isDead()) {
         this.playAnimation(this.Img_Dead);
-      } 
-      else {
+      } else {
         this.playAnimation(this.Img_Standing);
       }
     }, 80);

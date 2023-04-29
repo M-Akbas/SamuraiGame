@@ -4,6 +4,7 @@ class Enemie extends MovableObject {
   y = 222;
   width = 210;
   height = 200;
+  energy = 100;
   Img_Running = [
     "enemies/skelleton/walk/tile006.png",
     "enemies/skelleton/walk/tile005.png",
@@ -48,6 +49,12 @@ class Enemie extends MovableObject {
   animationForEnemie(){
     this.playAnimation(this.Img_Attacking);
     
+  }
+  hit() {
+    this.energy -= 2;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
   }
   
  
