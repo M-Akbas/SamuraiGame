@@ -2,7 +2,7 @@ class Character extends MovableObject {
   // Character extends classes from MovableObject
   speed = 5;
   y = 5;
-  energy = 200;
+  energy = 1600;
   swordSounds = [
     new Audio("audio/hits/hit1.mp3"),
     new Audio("audio/hits/hit2.mp3"),

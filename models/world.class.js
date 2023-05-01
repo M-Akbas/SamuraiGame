@@ -26,33 +26,61 @@ class World {
     this.checkLocation();
   }
 
+ 
+
   checkCollisions() {
     let endboss = this.level.endboss[0];
     setInterval(() => {
+      console.log(endboss.energy);
       this.level.enemies.forEach((enemy) => {
+
         if (this.character.isColliding(enemy)) {
+
+          if(enemy.isFighting == true){
+            this.character.hit();
+            this.statusbar.setPercentage(this.character.energy);
+            this.swordSounds.forEach(sound => sound.play());
+            enemy.animationForEnemie();
+
+          }
+          
+        }
+        if (this.character.isColliding(endboss)) {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
           this.swordSounds.forEach(sound => sound.play());
-          enemy.animationForEnemie();
+          
         }
         if(this.character.world.keyboard.space && this.character.isColliding(enemy)){
-          console.log("enemy hitted");
+          enemy.isFighting = false;
+          enemy.hurtAnimation();
           this.level.enemies.forEach((enemy) => {
-            enemy.hit(2);
-            console.log(enemy.energy);
+            enemy.hitDamage(1);
+            
             
             
           });
+
           
         }
-        if(enemy.energy == 0){
-          enemy.deadAnimation();
+        if(this.character.world.keyboard.space && this.character.isColliding(endboss)){
+          endboss.isFighting = false;
+          endboss.hurtAnimation();
+          endboss.hitDamage(1);
+          
         }
+        if(!this.character.world.keyboard.space){
+          endboss.isFighting = true;
+          enemy.isFighting = true;
+        }
+        
        
         if (this.character.isColliding(endboss)) {
-          endboss.animationForEndboss();
-          this.swordSounds.forEach(sound => sound.play());
+          if(endboss.isFighting == true){
+            endboss.attackAnimation();
+            this.swordSounds.forEach(sound => sound.play());
+
+          }
         }
       });
     }, 100);

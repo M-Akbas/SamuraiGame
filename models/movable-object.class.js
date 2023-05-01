@@ -65,13 +65,11 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
   
-  stopAnimation(currentImage){
-    currentImage = 0;
-  }
+ 
  
 
 
   jump() {
-    this.speedY = 15;
+    this.speedY = 20;
   }
 }

@@ -2,7 +2,7 @@ class HeartIcon extends MovableObject {
     x = -400;
     y = 100;
     height = 50;
-    width = 100;
+    width = 70;
 
     constructor(imagePath , x, y){
         super().loadImage(imagePath);

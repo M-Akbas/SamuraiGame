@@ -5,6 +5,7 @@ class Enemie extends MovableObject {
   width = 210;
   height = 200;
   energy = 100;
+  isFighting = true;
   Img_Running = [
     "enemies/skelleton/walk/tile006.png",
     "enemies/skelleton/walk/tile005.png",
@@ -28,9 +29,13 @@ class Enemie extends MovableObject {
   ];
   Img_Dead = [
     "enemies/skelleton/dead/tile000.png",
-    "enemies/skelleton/dead/tile000.png",
-    "enemies/skelleton/dead/tile000.png",
-    "enemies/skelleton/dead/tile000.png",
+    "enemies/skelleton/dead/tile001.png",
+    "enemies/skelleton/dead/tile002.png",
+    "enemies/skelleton/dead/tile003.png",
+  ];
+  Img_Hurt = [
+    "enemies/skelleton/hurt/tile000.png",
+    "enemies/skelleton/hurt/tile001.png",
   ];
 
   offset = {
@@ -44,6 +49,7 @@ class Enemie extends MovableObject {
     this.loadImages(this.Img_Running);
     this.loadImages(this.Img_Attacking);
     this.loadImages(this.Img_Dead);
+    this.loadImages(this.Img_Hurt);
     this.x = 400 + Math.random() * 600;
     this.speed = 0.45 + Math.random() * 0.25;
     this.energy = energy; // set the energy value here
@@ -64,7 +70,7 @@ class Enemie extends MovableObject {
     this.playAnimation(this.Img_Attacking);
     
   }
-  hit(damage) {
+  hitDamage(damage) {
     this.energy -= damage;
     if (this.energy < 0) {
       this.energy = 0;
@@ -79,7 +85,16 @@ class Enemie extends MovableObject {
       this.moveLeft();
     }, 1000 / 60);
     setInterval(() => {
-      this.playAnimation(this.Img_Running);
+      if(this.energy == 0){
+        this.deadAnimation();
+      } else {
+        this.playAnimation(this.Img_Running);
+
+      }
     }, 200);
+  }
+
+  hurtAnimation(){
+    this.playAnimation(this.Img_Hurt);
   }
 }

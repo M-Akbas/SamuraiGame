@@ -4,7 +4,8 @@ class Endboss extends MovableObject {
     width = 210;
     y = 200;
     speed = 0.5;
-
+    energy = 250;
+    isFighting = true;
     Img_Running = [
         "EndBoss/walk/tile001.png",
         "EndBoss/walk/tile002.png",
@@ -27,14 +28,48 @@ class Endboss extends MovableObject {
       "EndBoss/attack/tile002.png"
     ];
 
+    Img_Dead = [
+      "EndBoss/dead/tile000.png",
+      "EndBoss/dead/tile001.png",
+      "EndBoss/dead/tile002.png",
+      "EndBoss/dead/tile003.png",
+      "EndBoss/dead/tile004.png",
+      "EndBoss/dead/tile005.png",
+
+
+    ];
+
+    Img_Hurt = [
+      "EndBoss/hurt/tile000.png",
+      "EndBoss/hurt/tile001.png",
+      "EndBoss/hurt/tile002.png",
+
+
+      
+    ];
+    offset = {
+      top: 100,
+      left: 50,
+      right: 50,
+      bottom: 0,
+    };
       constructor(){
         super();
         this.loadImage(this.Img_Running[0]);
         this.loadImages(this.Img_Running);
         this.loadImages(this.Img_Attack);
+        this.loadImages(this.Img_Dead);
+        this.loadImages(this.Img_Hurt);
         this.x = 1600; 
         this.animate();
         
+      }
+
+      hitDamage(damage) {
+        this.energy -= damage;
+        if (this.energy < 0) {
+          this.energy = 0;
+        }
       }
 
       animate() {
@@ -42,11 +77,24 @@ class Endboss extends MovableObject {
           this.moveLeft();
         }, 1000 / 60);
         setInterval(() => {
-          this.playAnimation(this.Img_Running);
+          if(this.energy == 0){
+            this.deadAnimation();
+          } else {
+
+            this.playAnimation(this.Img_Running);
+          }
         }, 200);
       }
 
-      animationForEndboss(){
+      attackAnimation(){
         this.playAnimation(this.Img_Attack);
+      }
+
+      deadAnimation(){
+        this.playAnimation(this.Img_Dead);
+      }
+
+      hurtAnimation(){
+        this.playAnimation(this.Img_Hurt);
       }
 }
