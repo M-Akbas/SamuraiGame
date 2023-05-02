@@ -1,6 +1,6 @@
 class MovableObject extends DrawableObject {
   // All moveable Chracter's or Objects
-  
+  lastImageOfDead;
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -10,7 +10,7 @@ class MovableObject extends DrawableObject {
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   };
   applyGravity() {
     setInterval(() => {
@@ -18,7 +18,6 @@ class MovableObject extends DrawableObject {
       this.speedY -= this.accerleration;
     }, 1000 / 25);
   }
- 
 
   // isColliding (enemie)
   isColliding(mo) {
@@ -38,8 +37,6 @@ class MovableObject extends DrawableObject {
     }
   }
 
-  
-
   isDead() {
     return this.energy == 0;
   }
@@ -52,11 +49,13 @@ class MovableObject extends DrawableObject {
     this.x += this.speed;
   }
 
-  moveLeft() {
-    this.x -= this.speed;
+  moveLeft(enemieEnergy) {
+    if (enemieEnergy == 0) {
+      // do nothing
+    } else {
+      this.x -= this.speed;
+    }
   }
-
- 
 
   playAnimation(images) {
     let i = this.currentImage % images.length;
@@ -64,10 +63,6 @@ class MovableObject extends DrawableObject {
     this.img = this.imageCache[path];
     this.currentImage++;
   }
-  
- 
- 
-
 
   jump() {
     this.speedY = 20;

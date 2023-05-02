@@ -31,12 +31,14 @@ class World {
   checkCollisions() {
     let endboss = this.level.endboss[0];
     setInterval(() => {
-      console.log(endboss.energy);
+      
       this.level.enemies.forEach((enemy) => {
 
         if (this.character.isColliding(enemy)) {
-
-          if(enemy.isFighting == true){
+          if( enemy.energy == 0){
+            // stay there 
+          }
+          else if (enemy.isFighting == true){
             this.character.hit();
             this.statusbar.setPercentage(this.character.energy);
             this.swordSounds.forEach(sound => sound.play());
@@ -47,19 +49,28 @@ class World {
         }
         if (this.character.isColliding(endboss)) {
           this.character.hit();
-          this.statusbar.setPercentage(this.character.energy);
+          this .statusbar.setPercentage(this.character.energy);
           this.swordSounds.forEach(sound => sound.play());
           
         }
         if(this.character.world.keyboard.space && this.character.isColliding(enemy)){
-          enemy.isFighting = false;
-          enemy.hurtAnimation();
-          this.level.enemies.forEach((enemy) => {
-            enemy.hitDamage(1);
+          if( enemy.energy == 0){
+            // stay there
+          } else {
+            enemy.isFighting = false;
+           console.log(enemy.energy);
+            enemy.hurtAnimation();
+            this.level.enemies.forEach((enemy) => {
+              if(this.character.isColliding(enemy)){
+                enemy.hitDamage(1);
+  
+              }
+              
+              
+              
+            });
             
-            
-            
-          });
+          }
 
           
         }
@@ -89,7 +100,10 @@ class World {
   checkLocation() {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
-        if (this.character.x !== enemy.x) {
+        if(enemy.energy == 0){
+          // do nothing 
+        }
+        else if (this.character.x !== enemy.x) {
           const dx = this.character.x - enemy.x;
           const distance = Math.abs(dx);
           const speed = enemy.speed;

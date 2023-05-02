@@ -1,5 +1,5 @@
 const level1 = new Level(
-  [new Enemie(60), new Enemie(120), new Enemie(150)],
+  [new Enemie(10), new Enemie(10), new Enemie(150)],
   [new Endboss()],
   [
     new Background("oak_woods/background/background_layer_1.png", -800, 0),

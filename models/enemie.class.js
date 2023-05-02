@@ -25,7 +25,6 @@ class Enemie extends MovableObject {
     "enemies/skelleton/attack2/tile001.png",
     "enemies/skelleton/attack2/tile002.png",
     "enemies/skelleton/attack2/tile003.png",
-
   ];
   Img_Dead = [
     "enemies/skelleton/dead/tile000.png",
@@ -36,6 +35,11 @@ class Enemie extends MovableObject {
   Img_Hurt = [
     "enemies/skelleton/hurt/tile000.png",
     "enemies/skelleton/hurt/tile001.png",
+  ];
+
+  Img_CompletelyDead = [
+    "enemies/skelleton/dead/tile000.png",
+    "enemies/skelleton/dead/tile000.png",
   ];
 
   offset = {
@@ -50,25 +54,24 @@ class Enemie extends MovableObject {
     this.loadImages(this.Img_Attacking);
     this.loadImages(this.Img_Dead);
     this.loadImages(this.Img_Hurt);
+    this.loadImages(this.Img_CompletelyDead);
     this.x = 400 + Math.random() * 600;
     this.speed = 0.45 + Math.random() * 0.25;
     this.energy = energy; // set the energy value here
     this.animate();
   }
-  
+
   deadAnimation() {
     this.playAnimation(this.Img_Dead);
     let lastImage = this.Img_Dead[3];
-    if(lastImage){
-      console.log("dead");
+    if (lastImage) {
+      this.playAnimation(this.Img_CompletelyDead);
+      
     }
-    
   }
-  
 
-  animationForEnemie(){
+  animationForEnemie() {
     this.playAnimation(this.Img_Attacking);
-    
   }
   hitDamage(damage) {
     this.energy -= damage;
@@ -76,25 +79,23 @@ class Enemie extends MovableObject {
       this.energy = 0;
     }
   }
-  
- 
 
+ 
 
   animate() {
     setInterval(() => {
-      this.moveLeft();
+      this.moveLeft(this.energy);
     }, 1000 / 60);
     setInterval(() => {
-      if(this.energy == 0){
+      if (this.energy == 0) {
         this.deadAnimation();
       } else {
         this.playAnimation(this.Img_Running);
-
       }
     }, 200);
   }
 
-  hurtAnimation(){
+  hurtAnimation() {
     this.playAnimation(this.Img_Hurt);
   }
 }
