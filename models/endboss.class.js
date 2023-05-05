@@ -47,6 +47,11 @@ class Endboss extends MovableObject {
 
       
     ];
+
+    Img_CompletyDead =[
+      "EndBoss/dead/tile000.png",
+      "EndBoss/dead/tile000.png"
+    ]
     offset = {
       top: 100,
       left: 50,
@@ -60,9 +65,13 @@ class Endboss extends MovableObject {
         this.loadImages(this.Img_Attack);
         this.loadImages(this.Img_Dead);
         this.loadImages(this.Img_Hurt);
+        this.loadImages(this.Img_CompletyDead);
         this.x = 1600; 
         this.animate();
         
+      }
+      thisX() {
+        return this.x;
       }
 
       hitDamage(damage) {
@@ -74,7 +83,7 @@ class Endboss extends MovableObject {
 
       animate() {
         setInterval(() => {
-          this.moveLeft();
+          this.moveLeft(this.energy);
         }, 1000 / 60);
         setInterval(() => {
           if(this.energy == 0){
@@ -89,9 +98,15 @@ class Endboss extends MovableObject {
       attackAnimation(){
         this.playAnimation(this.Img_Attack);
       }
-
+ 
       deadAnimation(){
         this.playAnimation(this.Img_Dead);
+        let lastImage = this.Img_Dead[5];
+        if(lastImage){
+          this.playAnimation(this.Img_CompletyDead);
+          console.log("treu");
+
+        }
       }
 
       hurtAnimation(){

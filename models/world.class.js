@@ -30,6 +30,7 @@ class World {
 
   checkCollisions() {
     let endboss = this.level.endboss[0];
+   
     setInterval(() => {
       
       this.level.enemies.forEach((enemy) => {
@@ -48,15 +49,24 @@ class World {
           
         }
         if (this.character.isColliding(endboss)) {
-          this.character.hit();
-          this .statusbar.setPercentage(this.character.energy);
-          this.swordSounds.forEach(sound => sound.play());
+          if( endboss.energy == 0){
+            let currentX = endboss.x;
+            endboss.x = currentX;
+            
+          } else {
+            this.character.hit();
+            this .statusbar.setPercentage(this.character.energy);
+            this.swordSounds.forEach(sound => sound.play());
+
+          }
+          
           
         }
         if(this.character.world.keyboard.space && this.character.isColliding(enemy)){
           if( enemy.energy == 0){
-            // stay there
-          } else {
+
+          } 
+          else {
             enemy.isFighting = false;
            console.log(enemy.energy);
             enemy.hurtAnimation();
@@ -75,9 +85,16 @@ class World {
           
         }
         if(this.character.world.keyboard.space && this.character.isColliding(endboss)){
-          endboss.isFighting = false;
-          endboss.hurtAnimation();
-          endboss.hitDamage(1);
+          if(endboss.energy == 0){
+            setTimeout(() => {
+              
+            }, 100)
+          } else {
+
+            endboss.isFighting = false;
+            endboss.hurtAnimation();
+            endboss.hitDamage(1);
+          }
           
         }
         if(!this.character.world.keyboard.space){
@@ -87,7 +104,10 @@ class World {
         
        
         if (this.character.isColliding(endboss)) {
-          if(endboss.isFighting == true){
+          if(endboss.energy == 0){
+            // do nothing
+          } 
+          else if (endboss.isFighting == true){
             endboss.attackAnimation();
             this.swordSounds.forEach(sound => sound.play());
 
@@ -98,6 +118,7 @@ class World {
   }
 
   checkLocation() {
+    const endboss = this.level.endboss[0];
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if(enemy.energy == 0){
@@ -117,8 +138,11 @@ class World {
       });
 
       // Check end boss location
-      const endboss = this.level.endboss[0];
-      if (this.character.x !== endboss.x) {
+      if(endboss.energy == 0){
+        // do nothing
+      } 
+      else if (this.character.x !== endboss.x) {
+        
         const dx = this.character.x - endboss.x;
         const distance = Math.abs(dx);
         const speed = endboss.speed;
