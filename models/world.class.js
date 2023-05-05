@@ -5,7 +5,7 @@ class World {
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3")
   ];
-  
+  throwableObject = [];
   character = new Character();
   level = level1;
   backgroundMusic = new Audio("audio/music/music1.mp3");
@@ -25,14 +25,19 @@ class World {
     this.checkCollisions();
     this.checkLocation();
   }
-
+  checkThrowObject(){
+    if(this.keyboard.D){
+      let shuriken = new ThrowableObject(this.character.x + 200 , this.character.y + 100);
+      this.throwableObject.push(shuriken);
+    }
+  }
  
 
   checkCollisions() {
     let endboss = this.level.endboss[0];
    
     setInterval(() => {
-      
+      this.checkThrowObject();
       this.level.enemies.forEach((enemy) => {
 
         if (this.character.isColliding(enemy)) {
@@ -171,7 +176,7 @@ class World {
     this.addObjectsToMap(this.level.background);
     this.addObjectsToMap(this.level.fence);
     this.addObjectsToMap(this.level.floor);
-
+    this.addObjectsToMap(this.throwableObject);
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusbar);
     this.addToMap(this.heartIcon);
