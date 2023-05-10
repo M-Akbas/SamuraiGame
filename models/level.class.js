@@ -1,4 +1,5 @@
 class Level {
+  shuriken;
   enemies;
   endboss;
   background;
@@ -12,6 +13,7 @@ class Level {
   level_end_x = 1600;
 
   constructor(
+    shuriken,
     enemies,
     endboss,
     background,
@@ -23,6 +25,7 @@ class Level {
     shop,
     hearticon
   ) {
+    this.shuriken = shuriken;
     this.enemies = enemies;
     this.endboss = endboss;
     this.background = background;

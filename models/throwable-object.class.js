@@ -3,10 +3,10 @@ class ThrowableObject extends MovableObject {
     super().loadImage("hero/sprites/shuriken.png");
     this.x = x;
     this.y = y;
-    this.trow();
     
-    this.height = 30;
-    this.width = 30;
+    
+    this.height = 40;
+    this.width = 40;
   }
 
   trow() {

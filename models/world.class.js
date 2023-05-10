@@ -3,8 +3,9 @@ class World {
   swordSounds = [
     new Audio("audio/hits/hit1.mp3"),
     new Audio("audio/hits/hit2.mp3"),
-    new Audio("audio/hits/hit3.mp3")
+    new Audio("audio/hits/hit3.mp3"),
   ];
+  newShuriken = [];
   throwableObject = [];
   character = new Character();
   level = level1;
@@ -24,112 +25,126 @@ class World {
     this.music();
     this.checkCollisions();
     this.checkLocation();
+    this.checkThrowObject();
   }
-  checkThrowObject(){
-    if(this.keyboard.D){
-      let shuriken = new ThrowableObject(this.character.x + 200 , this.character.y + 100);
-      this.throwableObject.push(shuriken);
+
+  checkThrowObject() {
+    let shuriken = new ThrowableObject(
+      this.character.x + 200,
+      this.character.y + 100
+    );
+    
+    if (this.keyboard.D) {
+      if (this.newShuriken.length > 0) {
+        shuriken.trow();
+        console.log("wurf");
+        
+      } else { 
+        // do nothing
+      }
     }
+    
+    console.log(this.newShuriken.length);
   }
- 
+  
 
   checkCollisions() {
     let endboss = this.level.endboss[0];
-   
+
     setInterval(() => {
       this.checkThrowObject();
-      this.level.enemies.forEach((enemy) => {
-
-        if (this.character.isColliding(enemy)) {
-          if( enemy.energy == 0){
-            // stay there 
+      
+        this.level.enemies.forEach((enemy) => {
+          if (this.character.isColliding(enemy)) {
+            if (enemy.energy == 0) {
+              // stay there
+            } else if (enemy.isFighting == true) {
+              this.character.hit();
+              this.statusbar.setPercentage(this.character.energy);
+              this.swordSounds.forEach((sound) => sound.play());
+              enemy.animationForEnemie();
+            }
           }
-          else if (enemy.isFighting == true){
-            this.character.hit();
-            this.statusbar.setPercentage(this.character.energy);
-            this.swordSounds.forEach(sound => sound.play());
-            enemy.animationForEnemie();
-
+          if (this.character.isColliding(endboss)) {
+            if (endboss.energy == 0) {
+              let currentX = endboss.x;
+              endboss.x = currentX;
+            } else {
+              this.character.hit();
+              this.statusbar.setPercentage(this.character.energy);
+              this.swordSounds.forEach((sound) => sound.play());
+            }
           }
-          
-        }
-        if (this.character.isColliding(endboss)) {
-          if( endboss.energy == 0){
-            let currentX = endboss.x;
-            endboss.x = currentX;
+          if (
+            this.character.world.keyboard.space &&
+            this.character.isColliding(enemy)
+          ) {
+            if (enemy.energy == 0) {
+            } else {
+              enemy.isFighting = false;
+              console.log(enemy.energy);
+              enemy.hurtAnimation();
+              this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                  enemy.hitDamage(1);
+                }
+              });
+            }
+          }
+          if (
+            this.character.world.keyboard.space &&
+            this.character.isColliding(endboss)
+          ) {
+            if (endboss.energy == 0) {
+              setTimeout(() => {}, 100);
+            } else {
+              endboss.isFighting = false;
+              endboss.hurtAnimation();
+              endboss.hitDamage(1);
+            }
+          }
+          if (!this.character.world.keyboard.space) {
+            endboss.isFighting = true;
+            enemy.isFighting = true;
+          }
+
+          if (this.character.isColliding(endboss)) {
+            if (endboss.energy == 0) {
+              // do nothing
+            } else if (endboss.isFighting == true) {
+              endboss.attackAnimation();
+              this.swordSounds.forEach((sound) => sound.play());
+            }
+          }
+        });
+        
+        for (let i = 0; i < this.level.shuriken.length; i++) {
+          let shuriken = this.level.shuriken[i];
+          if (this.character.isColliding(shuriken)) {
+            console.log("collid / shuriken");
+            this.level.shuriken.splice(i, 1);
+            this.newShuriken.push(shuriken);
             
-          } else {
-            this.character.hit();
-            this .statusbar.setPercentage(this.character.energy);
-            this.swordSounds.forEach(sound => sound.play());
-
+            break;
           }
-          
-          
-        }
-        if(this.character.world.keyboard.space && this.character.isColliding(enemy)){
-          if( enemy.energy == 0){
-
-          } 
-          else {
-            enemy.isFighting = false;
-           console.log(enemy.energy);
-            enemy.hurtAnimation();
-            this.level.enemies.forEach((enemy) => {
-              if(this.character.isColliding(enemy)){
-                enemy.hitDamage(1);
-  
-              }
-              
-              
-              
-            });
-            
-          }
-
-          
-        }
-        if(this.character.world.keyboard.space && this.character.isColliding(endboss)){
-          if(endboss.energy == 0){
-            setTimeout(() => {
-              
-            }, 100)
-          } else {
-
-            endboss.isFighting = false;
-            endboss.hurtAnimation();
-            endboss.hitDamage(1);
-          }
-          
-        }
-        if(!this.character.world.keyboard.space){
-          endboss.isFighting = true;
-          enemy.isFighting = true;
         }
         
-       
-        if (this.character.isColliding(endboss)) {
-          if(endboss.energy == 0){
-            // do nothing
-          } 
-          else if (endboss.isFighting == true){
-            endboss.attackAnimation();
-            this.swordSounds.forEach(sound => sound.play());
-
-          }
-        }
-      });
+        
+        
+        
+      
     }, 100);
   }
+
+  
 
   checkLocation() {
     const endboss = this.level.endboss[0];
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
-        if(enemy.energy == 0){
-          // do nothing 
-        }
-        else if (this.character.x !== enemy.x) {
+        if (enemy.energy == 0) {
+          // do nothing
+        } else if (this.character.x !== enemy.x) {
           const dx = this.character.x - enemy.x;
           const distance = Math.abs(dx);
           const speed = enemy.speed;
@@ -143,11 +158,9 @@ class World {
       });
 
       // Check end boss location
-      if(endboss.energy == 0){
+      if (endboss.energy == 0) {
         // do nothing
-      } 
-      else if (this.character.x !== endboss.x) {
-        
+      } else if (this.character.x !== endboss.x) {
         const dx = this.character.x - endboss.x;
         const distance = Math.abs(dx);
         const speed = endboss.speed;
@@ -189,6 +202,7 @@ class World {
 
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.shuriken);
     this.addObjectsToMap(this.level.endboss);
     this.ctx.translate(-this.camera_x, 0);
 
