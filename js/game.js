@@ -1,6 +1,21 @@
 let canvas;
 let world;
 
+function gameStart(){
+    let button = document.getElementById("startButton");
+    let overlay = document.getElementById("overlay");
+    let enemieImg = document.getElementById("E-Img");
+    let heroImg = document.getElementById("H-Img");
+    enemieImg.style.display = "none";
+    heroImg.style.display = "none";
+    overlay.style.backgroundColor = "rgba(0,0,0,0)";
+    button.style.display = "none";
+    
+    init();
+    
+    
+}
+
 let keyboard = new Keyboard();
 function init(){
     canvas = document.getElementById('canvas')

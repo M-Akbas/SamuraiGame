@@ -1,11 +1,9 @@
 const level1 = new Level(
   [
-    new ThrowableObject(500 , 100),
-    new ThrowableObject(1200 ,70),
+    new ThrowableObject(500, 100),
+    new ThrowableObject(1200, 70),
     new ThrowableObject(1600, 120),
-    new ThrowableObject(800 , 70),
-   
-  
+    new ThrowableObject(800, 70),
   ],
   [
     new Enemie(10),

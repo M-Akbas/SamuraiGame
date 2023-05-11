@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="models/drawable-object.class.js"></script>
-    <script src="models/status-bar.class.js"></script>
-    <script src="models/world.class.js"></script>
     <script src="models/movable-object.class.js"></script>
+    <script src="models/throwable-object.class.js"></script>
+    <script src="models/enemie.class.js"></script>
+    <script src="models/level.class.js"></script>
+    <script src="models/status-bar.class.js"></script>
+    <script src="models/endboss.class.js"></script>
+    <script src="models/background.class.js"></script>
     <script src="models/character.class.js"></script>
     <script src="models/floor.class.js"></script>
-    <script src="models/endboss.class.js"></script>
     <script src="models/lamps.class.js"></script>
     <script src="models/shop.class.js"></script>
     <script src="models/rocks.class.js"></script>
@@ -15,31 +18,44 @@
     <script src="models/keyboard.class.js"></script>
     <script src="models/secondFloor.class.js"></script>
     <script src="models/heartIcon.class.js"></script>
-    <script src="models/enemie.class.js"></script>
-    <script src="models/background.class.js"></script>
-    <script src="models/level.class.js"></script>
-    <script src="models/throwable-object.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="models/world.class.js"></script>
     <script src="js/game.js"></script>
-    <link rel="icon" type="image/x-icon" href="img/favicon.jpg">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/favicon.jpg" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Samurai Game</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body onload="init()">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="overlay">
+      <div id="content">
+        <header>
+          <div>Logo</div>
+          <div>Mute IMG</div>
+        </header>
 
-    <header>
-        <div>Logo</div>
-        <div>Mute IMG</div>
-    </header>
+        <h1>Samurai</h1>
 
-    <h1>Samurai</h1>
-    
-    <canvas  id="canvas" width="720" height="480">
-
-    </canvas>
-
-</body>
+        <canvas id="canvas" width="720" height="480"> </canvas>
+        <button id="startButton" onclick="gameStart()">START GAME</button>
+        <img class="bottomS" src="imgForDesign/bottomS.png" alt="" />
+        <div id="H-Img" class="animationHero">
+          <img
+            class="heroAnimation"
+            src="imgForDesign/heroGameCover.png"
+            alt="hero"
+          />
+        </div>
+        <div id="E-Img" class="enemieAnimation">
+          <img
+            class="enemieAnimation"
+            src="imgForDesign/enemyGameCover.png"
+            alt="enemie"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

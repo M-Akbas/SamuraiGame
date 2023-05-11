@@ -1,5 +1,6 @@
 class World {
   // Everthing what in world contains
+
   swordSounds = [
     new Audio("audio/hits/hit1.mp3"),
     new Audio("audio/hits/hit2.mp3"),
