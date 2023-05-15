@@ -6,7 +6,8 @@ class World {
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3"),
   ];
-  newShuriken = [];
+
+  ShurikenCounter = [];
   throwableObject = [];
   character = new Character();
   level = level1;
@@ -28,33 +29,43 @@ class World {
     this.checkCollisions();
     this.checkLocation();
     this.checkThrowObject();
-    this.checkAmountOfShuriken();
+    this.drawNewShuriken();
   }
 
-  checkThrowObject() {
-    let shuriken = new ThrowableObject(
-      this.character.x + 200,
-      this.character.y + 100
-    );
-
-    if (this.keyboard.D) {
-      if (this.newShuriken.length > 0) {
-        shuriken.trow();
-        console.log("wurf");
+  drawNewShuriken() {
+    setInterval(() => {
+      if (this.ShurikenCounter.length > 0) {
+        console.log("true");
+        this.addObjectsToMap(this.ShurikenCounter);
       } else {
-        // do nothing
+        console.log("false");
       }
-    }
-
-    console.log(this.newShuriken.length);
+    });
   }
+  checkThrowObject() {
+    let i = 0;
+    setInterval(() => {
+      if (this.keyboard.D) {
+        if (this.ShurikenCounter.length > 0 && i < 4) { // Überprüfung auf Gegenstände und maximale Anzahl von 4 Wurfobjekten
+          let shuriken = new ThrowableObject(this.character.x + 190, this.character.y + 100);
+          this.throwableObject.push(shuriken);
+  
+          let newShuriken = this.throwableObject[i];
+          newShuriken.throw();
+          this.ShurikenCounter.shift(); // schmeißt ein object raus ;) 
+          console.log("wurf");
+          console.log(i);
+          i++;
+        }
+      }
+    }, 100);
+  }
+  
 
   checkCollisions() {
     let endboss = this.level.endboss[0];
 
     setInterval(() => {
-      this.checkThrowObject();
-
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           if (enemy.energy == 0) {
@@ -83,7 +94,6 @@ class World {
           if (enemy.energy == 0) {
           } else {
             enemy.isFighting = false;
-            console.log(enemy.energy);
             enemy.hurtAnimation();
             this.level.enemies.forEach((enemy) => {
               if (this.character.isColliding(enemy)) {
@@ -122,9 +132,8 @@ class World {
       for (let i = 0; i < this.level.shuriken.length; i++) {
         let shuriken = this.level.shuriken[i];
         if (this.character.isColliding(shuriken)) {
-          console.log("collid / shuriken");
           this.level.shuriken.splice(i, 1);
-          this.newShuriken.push(shuriken);
+          this.ShurikenCounter.push(shuriken);
 
           break;
         }
@@ -190,7 +199,7 @@ class World {
     this.addToMap(this.shurikenIcon);
     this.ctx.font = "30px 'Press Start 2P'";
     this.ctx.fillStyle = "rgba(255, 255, 255, 0.7)"; // Farbe des Textes auf ein etwas transparentes Weiß-Grau setzen
-    this.ctx.fillText(this.newShuriken.length, 100, 140);
+    this.ctx.fillText(this.ShurikenCounter.length, 100, 140);
 
     this.ctx.translate(this.camera_x, 0);
 

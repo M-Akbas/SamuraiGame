@@ -104,7 +104,7 @@ class Endboss extends MovableObject {
         let lastImage = this.Img_Dead[5];
         if(lastImage){
           this.playAnimation(this.Img_CompletyDead);
-          console.log("treu");
+          
 
         }
       }
