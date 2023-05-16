@@ -6,7 +6,8 @@ class World {
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3"),
   ];
-
+  enmieHurtSound = new Audio("audio/hurt/enemieHUrt.mp3");
+  throwSound = new Audio("audio/jump/throw.sound.mp3")
   ShurikenCounter = [];
   throwableObject = [];
   character = new Character();
@@ -44,22 +45,43 @@ class World {
   }
   checkThrowObject() {
     let i = 0;
+    let endboss = this.level.endboss[0];
+    let newShuriken;
+  
     setInterval(() => {
       if (this.keyboard.D) {
-        if (this.ShurikenCounter.length > 0 && i < 4) { // Überprüfung auf Gegenstände und maximale Anzahl von 4 Wurfobjekten
+        if (this.ShurikenCounter.length > 0 && i < 4) { 
           let shuriken = new ThrowableObject(this.character.x + 190, this.character.y + 100);
           this.throwableObject.push(shuriken);
   
-          let newShuriken = this.throwableObject[i];
+          newShuriken = this.throwableObject[i];
           newShuriken.throw();
-          this.ShurikenCounter.shift(); // schmeißt ein object raus ;) 
-          console.log("wurf");
-          console.log(i);
+          this.throwSound.play();
+          
+
+          this.ShurikenCounter.shift();
           i++;
+
+         
         }
       }
+  
+      this.level.enemies.forEach((enemy) => {
+        if (newShuriken && (newShuriken.isColliding(endboss) || newShuriken.isColliding(enemy))) {
+          enemy.hurtAnimation();
+          endboss.hurtAnimation();
+          endboss.hitDamage(1);
+          enemy.hitDamage(2);
+          this.enmieHurtSound.play();
+          console.log(endboss.energy);
+          console.log(enemy.energy);
+        }
+      });
+
+      
     }, 100);
   }
+  
   
 
   checkCollisions() {
@@ -138,6 +160,7 @@ class World {
           break;
         }
       }
+      
     }, 100);
   }
 
