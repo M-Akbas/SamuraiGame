@@ -1,11 +1,10 @@
 class World {
-
   swordSounds = [
     new Audio("audio/hits/hit1.mp3"),
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3"),
   ];
-
+  gameOverMusic = new Audio("audio/gameoverMusic/gameover.mp3");
   enmieHurtSound = new Audio("audio/hurt/enemieHUrt.mp3");
   throwSound = new Audio("audio/jump/throw.sound.mp3");
   ShurikenCounter = [];
@@ -34,31 +33,37 @@ class World {
     this.drawNewShuriken();
     this.endOfGame();
   }
-
+  showGameOverText() {
+    let gameOverOverlay = document.getElementById("gameOverOverlay");
+    gameOverOverlay.style.display = "block";
+  }
 
   endOfGame() {
     let endboss = this.level.endboss[0];
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (
-          (endboss.energy == 0 && enemy.energy == 0) ||
-          this.character.energy == 0
+          (endboss.energy === 0 && enemy.energy === 0) ||
+          this.character.energy === 0
         ) {
-          console.log("Game ende");
+          this.backgroundMusic.pause();
+          this.gameOverMusic.play();
+          setTimeout(() => {
+            this.showGameOverText();
+            console.log("end");
+          }, 2000); // 2000 Millisekunden entsprechen 2 Sekunden
         }
       });
     });
   }
 
-
   drawNewShuriken() {
     setInterval(() => {
       if (this.ShurikenCounter.length > 0) {
         this.addObjectsToMap(this.ShurikenCounter);
-      } 
+      }
     });
   }
-
 
   checkThrowObject() {
     let i = 0;
@@ -85,7 +90,6 @@ class World {
       });
     }, 100);
   }
-
 
   checkCollisions() {
     let endboss = this.level.endboss[0];
@@ -122,7 +126,6 @@ class World {
       this.isShurikenCollected();
     }, 100);
   }
- 
 
   checkLocation() {
     const endboss = this.level.endboss[0];
@@ -133,17 +136,14 @@ class World {
       this.endbossFollowChar(endboss);
     }, 50);
   }
- 
 
   setWorld() {
     this.character.world = this;
   }
 
-
   music() {
     this.backgroundMusic.play();
   }
-
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
@@ -157,7 +157,7 @@ class World {
     this.addToMap(this.heartIcon);
     this.addToMap(this.shurikenIcon);
     this.ctx.font = "30px 'Press Start 2P'";
-    this.ctx.fillStyle = "rgba(255, 255, 255, 0.7)"; 
+    this.ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
     this.ctx.fillText(this.ShurikenCounter.length, 100, 140);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.secondFloor);
@@ -176,7 +176,6 @@ class World {
     });
   }
 
-
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -190,13 +189,11 @@ class World {
     }
   }
 
-
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
-
 
   flipImage(mo) {
     this.ctx.save();
@@ -205,12 +202,10 @@ class World {
     mo.x = mo.x * -1;
   }
 
-
   flipImageBack(mo) {
     this.ctx.restore();
     mo.x = mo.x * -1;
   }
-
 
   handleCollisions(newShuriken, endboss, enemy) {
     if (
@@ -227,10 +222,8 @@ class World {
     }
   }
 
-
   isFighting(enemy) {
-    if (enemy.energy == 0) {
-      // stay there
+    if (enemy.energy == 0 || this.character.energy == 0) {
     } else if (enemy.isFighting == true) {
       this.character.hit(enemy);
       this.statusbar.setPercentage(this.character.energy);
@@ -238,7 +231,6 @@ class World {
       enemy.animationForEnemie();
     }
   }
-
 
   fightEnemie(enemy) {
     if (enemy.energy == 0) {
@@ -253,7 +245,6 @@ class World {
     }
   }
 
-
   fightEndboss(endboss) {
     if (endboss.energy == 0) {
       setTimeout(() => {}, 100);
@@ -264,15 +255,13 @@ class World {
     }
   }
 
-
   enemiesAreFighting(enemy, endboss) {
     endboss.isFighting = true;
     enemy.isFighting = true;
   }
 
-
-  endbossAttacking(endboss){
-    if (endboss.energy == 0) {
+  endbossAttacking(endboss) {
+    if (endboss.energy == 0 || this.character.energy == 0) {
       // do nothing
     } else if (endboss.isFighting == true) {
       endboss.attackAnimation();
@@ -280,8 +269,7 @@ class World {
     }
   }
 
-
-  isShurikenCollected(){
+  isShurikenCollected() {
     for (let i = 0; i < this.level.shuriken.length; i++) {
       let shuriken = this.level.shuriken[i];
       if (this.character.isColliding(shuriken)) {
@@ -293,9 +281,8 @@ class World {
     }
   }
 
-
   deadOrAlive(endboss) {
-    if (endboss.energy == 0) {
+    if (endboss.energy == 0 || this.character.energy == 0) {
       let currentX = endboss.x;
       endboss.x = currentX;
     } else {
@@ -305,7 +292,7 @@ class World {
     }
   }
 
-  enemyFollowChar(enemy){
+  enemyFollowChar(enemy) {
     if (enemy.energy == 0) {
       // do nothing
     } else if (this.character.x !== enemy.x) {
@@ -321,8 +308,7 @@ class World {
     }
   }
 
-
-  endbossFollowChar(endboss){
+  endbossFollowChar(endboss) {
     if (endboss.energy == 0) {
       // do nothing
     } else if (this.character.x !== endboss.x) {

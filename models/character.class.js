@@ -8,6 +8,7 @@ class Character extends MovableObject {
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3")
   ];
+  
   Img_Running = [
     "hero/sprites/run/tile000.png",
     "hero/sprites/run/tile001.png",
@@ -51,7 +52,16 @@ class Character extends MovableObject {
     "hero/sprites/death/tile006.png",
     "hero/sprites/death/tile006.png",
   ];
-
+  Img_CompletlyDead = [
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+    "hero/sprites/death/tile006.png",
+  ];
   Img_TakeHit = [
     "hero/sprites/takeHit/tile000.png",
     "hero/sprites/takeHit/tile001.png",
@@ -96,6 +106,10 @@ class Character extends MovableObject {
     this.loadImages(this.Img_Attack);
     this.applyGravity();
     this.animate();
+  }
+
+  enemyStopHit(){
+    this.playAnimation(this.Img_CompletlyDead);
   }
 
   animationForChar() {
@@ -152,7 +166,7 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-     
+      let lastImage = this.Img_Dead[6];
       if (this.isAboveGround()) {
         this.playAnimation(this.Img_Jumping);
       } else if (this.world.keyboard.right || this.world.keyboard.left) {
@@ -160,6 +174,9 @@ class Character extends MovableObject {
         this.playAnimation(this.Img_Running);
       } else if (this.isDead()) {
         this.playAnimation(this.Img_Dead);
+        if(lastImage){
+          this.enemyStopHit();
+        }
       } else {
         this.playAnimation(this.Img_Standing);
       }

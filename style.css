@@ -60,26 +60,26 @@ button {
   transition: background-color 0.2s ease-in-out;
   position: absolute;
   top: 50%;
+  font-family: "Press Start 2P";
 }
-button:hover{
-    background-color: #b71c1c;
+button:hover {
+  background-color: #b71c1c;
 }
 
-.bottomS{
+.bottomS {
   position: absolute;
   top: 60%;
   height: 200px;
   width: 720px;
 }
-.enemieAnimation{
+.enemieAnimation {
   height: 300px;
   position: absolute;
   top: 40%;
   right: 20%;
-
 }
-.heroAnimation{
-  height:300px;
+.heroAnimation {
+  height: 300px;
   position: absolute;
   top: 40%;
   left: 20%;
@@ -105,7 +105,9 @@ button:hover{
 /* Animation-Regel */
 @keyframes enemy-enter {
   0% {
-    transform: translateX(300px); /* Startposition: außerhalb des sichtbaren Bereichs */
+    transform: translateX(
+      300px
+    ); /* Startposition: außerhalb des sichtbaren Bereichs */
   }
   100% {
     right: 20%; /* Zielposition: rechts mit 20% Abstand vom rechten Rand */
@@ -115,9 +117,35 @@ button:hover{
 /* Animation-Regel */
 @keyframes hero-enter {
   0% {
-    transform: translateX(-300px); /* Startposition: außerhalb des sichtbaren Bereichs */
+    transform: translateX(
+      -300px
+    ); /* Startposition: außerhalb des sichtbaren Bereichs */
   }
   100% {
     left: 20%; /* Zielposition: links mit 20% Abstand vom linken Rand */
   }
+}
+#gameOverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 999999;
+}
+.gameOver {
+  font-family:"Press Start 2P";
+  font-size: 70px;
+  font-weight: 700;
+  position: absolute;
+  top: 40%;
+  color: #fff;
+}
+
+#gameOverContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }

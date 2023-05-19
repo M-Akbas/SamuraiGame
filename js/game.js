@@ -1,5 +1,9 @@
 let canvas;
 let world;
+let buttonSound = new Audio("audio/gameoverMusic/buttonSOund.mp3")
+function playButtonSound(){
+    buttonSound.play();
+}
 
 function gameStart(){
     let button = document.getElementById("startButton");
@@ -15,6 +19,7 @@ function gameStart(){
     
     
 }
+
 
 let keyboard = new Keyboard();
 function init(){

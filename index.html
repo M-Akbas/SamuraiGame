@@ -36,6 +36,17 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div style="display: none" id="gameOverOverlay">
+      <div id="gameOverContent">
+        <div class="gameOver">GAME OVER</div>
+        <button
+          onclick="location.reload(), playButtonSound();
+        "
+        >
+          PLAY AGAIN
+        </button>
+      </div>
+    </div>
     <div id="overlay">
       <div id="content">
         <header>
@@ -46,7 +57,7 @@
         <h1>Samurai</h1>
 
         <canvas id="canvas" width="720" height="480"> </canvas>
-        <button id="startButton" onclick="gameStart()">START GAME</button>
+        <button id="startButton" onclick="gameStart(), playButtonSound()">START GAME</button>
 
         <div id="H-Img" class="animationHero">
           <img
