@@ -23,7 +23,7 @@ class DrawableObject {
     ) {
       ctx.beginPath();
       ctx.lineWidth = "4";
-      ctx.strokeStyle = "red";
+      ctx.strokeStyle = "rgba(0, 0, 0, 0)"; // transparent color
       ctx.rect(
         this.x + this.offset.left,
         this.y + this.offset.top,

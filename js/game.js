@@ -29,6 +29,9 @@ function init(){
 
     console.log('My Character is' , world.character);
 }
+function muteSound(){
+    console.log("NOT FINISHED :) ")
+  }
 
 window.addEventListener('keydown', (event) => {
     if(event.keyCode == 39){

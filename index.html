@@ -32,7 +32,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Samurai Game</title>
+    <title>Takeshi Ichiro: The Last Samurai</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -50,14 +50,22 @@
     <div id="overlay">
       <div id="content">
         <header>
-          <div>Logo</div>
-          <div>Mute IMG</div>
+          <img class="logo" src="hero/sprites/standing/tile000.png">
+          <img onclick="muteSound()" class="muteImg" src="imgForDesign/mute.png" alt="">
         </header>
-
-        <h1>Samurai</h1>
+        <h2>Takeshi Ichiro 武士一郎</h2>
+        <h1>The Last Samurai</h1>
 
         <canvas id="canvas" width="720" height="480"> </canvas>
         <button id="startButton" onclick="gameStart(), playButtonSound()">START GAME</button>
+        <div class="settings">
+          <div class="setting">↑ JUMP</div>
+          <div class="setting">→ RIGHT</div>
+          <div class="setting">← LEFT</div>
+          <div class="setting">D - SHURIKEN</div>
+          
+
+        </div>
 
         <div id="H-Img" class="animationHero">
           <img

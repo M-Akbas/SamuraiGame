@@ -33,6 +33,8 @@ class World {
     this.drawNewShuriken();
     this.endOfGame();
   }
+
+
   showGameOverText() {
     let gameOverOverlay = document.getElementById("gameOverOverlay");
     gameOverOverlay.style.display = "block";
