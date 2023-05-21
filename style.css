@@ -67,6 +67,7 @@ body::before {
 
 canvas {
   background-color: black;
+  display: block;
 }
 h1 {
   margin: 0;
@@ -195,3 +196,45 @@ button:hover {
   align-items: center;
 
 }
+/* smartphone */
+ @media only screen and (max-width:720px){
+  canvas{
+    width: 100%;
+  }
+  h1{
+    display: none;
+  }
+  h2 {
+    display: none;
+  }
+  header {
+    display: none;
+  }
+  #E-Img{
+    display: none;
+  }
+  #H-Img{
+    display: none;
+  }
+ }
+
+ @media only screen and (max-height:480px){
+  canvas{
+    width: 100vh;
+  }
+  h1{
+    display: none;
+  }
+  h2 {
+    display: none;
+  }
+  header {
+    display: none;
+  }
+  #E-Img{
+    display: none;
+  }
+  #H-Img{
+    display: none;
+  }
+ }
