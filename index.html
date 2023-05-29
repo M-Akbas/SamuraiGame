@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html translate="no">
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,22 +50,61 @@
     <div id="overlay">
       <div id="content">
         <header>
-          <img class="logo" src="hero/sprites/standing/tile000.png">
-          <img onclick="muteSound()" class="muteImg" src="imgForDesign/mute.png" alt="">
+          <img class="logo" src="hero/sprites/standing/tile000.png" />
+          <img
+            id="mute"
+            onclick="muteSound() ,toggleMute()"
+            class="muteImg"
+            src="imgForDesign/mute.png"
+            alt=""
+          />
         </header>
         <h2>Takeshi Ichiro 武士一郎</h2>
-        <h1>The Last Samurai</h1>
-
-        <canvas id="canvas" width="720" height="480"> </canvas>
-        <button id="startButton" onclick="gameStart(), playButtonSound()">START GAME</button>
+        <h1 class="title">The Last Samurai</h1>
+        <div>
+          <div class="buttons">
+            <img
+              id="btnAttack"
+              class="swordButton"
+              src="mobileButtons/sword.png"
+            />
+            <img
+              onclick="muteSound() ,toggleMute()"
+              id="mute"
+              class="muteImg"
+              src="imgForDesign/mute.png"
+            />
+            <img
+              id="btnLeft"
+              class="leftArrow"
+              src="mobileButtons/tile000.png"
+            />
+            <img id="btnUp" class="topArrow" src="mobileButtons/tile001.png" />
+            <img
+              id="btnRight"
+              class="rightArrow"
+              src="mobileButtons/tile003.png"
+            />
+            <img
+              id="btnShuriken"
+              class="btnShuriken"
+              src="mobileButtons/mobileButtonsShuriken.png"
+              alt=""
+            />
+            <img class="rotate" src="imgForDesign/rotate.jpg" alt="">
+            <div id="overlayMobile"></div>
+          </div>
+          <canvas id="canvas" width="720" height="480"> </canvas>
+        </div>
+        <button id="startButton" onclick="gameStart(), playButtonSound()">
+          START GAME
+        </button>
         <div class="settings">
-          <div class="setting">↑ JUMP</div>
-          <div class="setting">→ RIGHT</div>
-          <div class="setting">← LEFT</div>
-          <div> Spacebar - ATTACK</div>
-          <div class="setting">D - SHURIKEN</div>
-          
-
+          <div class="setting">↑ <b>JUMP</b></div>
+          <div class="setting">→ <b>RIGHT</b></div>
+          <div class="setting">← <b>LEFT</b></div>
+          <div>spacebar - <b>ATTACK</b></div>
+          <div class="setting">D - <b>SHURIKEN</b></div>
         </div>
 
         <div id="H-Img" class="animationHero">

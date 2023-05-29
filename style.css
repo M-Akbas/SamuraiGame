@@ -7,7 +7,10 @@ body {
   width: 99%;
   background-size: 1000px;
 }
-header{
+.safari-header {
+  display: none !important;
+}
+header {
   background-color: rgb(10, 10, 10);
   width: 100%;
   height: 70px;
@@ -15,37 +18,34 @@ header{
   align-items: center;
   justify-content: space-between;
 }
-.muteImg{
+.muteImg {
+  background-color: whitesmoke;
+  border-radius: 50%;
   margin-right: 30px;
   height: 50px;
 }
-.muteImg:hover{
- background-color: #c83636db;
- border-radius: 50%;
-}
-.logo{ 
+
+
+.muteImg:hover {
+  background-color: #c83636db;
   
+}
+.logo {
   height: 210px;
-  
-  
 }
-.setting{
-  
+.setting {
   margin-left: 30px;
   margin-right: 40px;
 }
-.settings{
+.settings {
   padding: 20px;
   margin-top: 10px;
   border-radius: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 20px;
   display: flex;
   justify-content: center;
-  
-  
-  
-  
+
   background-color: #ca4343c6;
   color: whitesmoke;
 }
@@ -73,7 +73,7 @@ h1 {
   margin: 0;
   color: rgba(245, 245, 245, 0.857);
   font-size: 95px;
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 h2 {
   color: rgba(245, 245, 245, 0.563);
@@ -86,6 +86,16 @@ h2 {
   height: 100%;
   background-color: rgb(0, 0, 0);
   z-index: 9999;
+}
+#overlayMobile{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 1;
+  display: none;
 }
 
 #content {
@@ -111,6 +121,16 @@ button {
 }
 button:hover {
   background-color: #b71c1c;
+}
+.rotate{
+  object-fit: contain;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  height: 40%;
+  width: 100%;
+  display: none;
 }
 
 .bottomS {
@@ -143,7 +163,7 @@ button:hover {
 .enemieAnimation {
   height: 500px;
   position: absolute;
-  top: 15%;
+  top: 17%;
   right: -300px; /* Startposition: außerhalb des sichtbaren Bereichs */
   animation-name: enemy-enter;
   animation-duration: 1s;
@@ -157,7 +177,7 @@ button:hover {
     ); /* Startposition: außerhalb des sichtbaren Bereichs */
   }
   100% {
-    right: 15%; /* Zielposition: rechts mit 20% Abstand vom rechten Rand */
+    right: 2%; /* Zielposition: rechts mit 20% Abstand vom rechten Rand */
   }
 }
 
@@ -169,7 +189,7 @@ button:hover {
     ); /* Startposition: außerhalb des sichtbaren Bereichs */
   }
   100% {
-    left: 15%; /* Zielposition: links mit 20% Abstand vom linken Rand */
+    left: 2%; /* Zielposition: links mit 20% Abstand vom linken Rand */
   }
 }
 #gameOverOverlay {
@@ -182,7 +202,7 @@ button:hover {
   z-index: 999999;
 }
 .gameOver {
-  font-family:"Press Start 2P";
+  font-family: "Press Start 2P";
   font-size: 70px;
   font-weight: 700;
   position: absolute;
@@ -194,35 +214,25 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+}
+.buttons {
+  display: none;
+  
 }
 /* smartphone */
- @media only screen and (max-width:720px){
-  canvas{
-    width: 100%;
+@media only screen and (max-width: 720px) {
+  canvas {
+    width: fit-content;
   }
-  h1{
-    display: none;
+  .buttons {
+    display: block;
   }
-  h2 {
-    display: none;
-  }
-  header {
-    display: none;
-  }
-  #E-Img{
-    display: none;
-  }
-  #H-Img{
-    display: none;
-  }
- }
+  
+  
+  
+ 
 
- @media only screen and (max-height:480px){
-  canvas{
-    width: 100vh;
-  }
-  h1{
+  h1 {
     display: none;
   }
   h2 {
@@ -231,10 +241,145 @@ button:hover {
   header {
     display: none;
   }
-  #E-Img{
+  #E-Img {
     display: none;
   }
-  #H-Img{
+  #H-Img {
     display: none;
   }
- }
+  .settings {
+    display: none;
+  }
+  header { 
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 80vh;
+  }
+  .muteImg{
+    position: absolute;
+    height: 50px;
+    top: 8%;
+    right:10%;
+  }
+  .buttons {
+    display: block;
+  }
+ 
+  h1 {
+    display: none; 
+  }
+  h2 {
+    display: none;
+  }
+  header {
+    display: none;
+  }
+  #E-Img {
+    display: none;
+  }
+  #H-Img {
+    display: none;
+  }
+  .gameOver {
+    font-size: 20px;
+  }
+  .settings {
+    display: none;
+  }
+}
+
+.spacebarPNG {
+  height: 50px;
+  object-fit: contain;
+  align-items: center;
+}
+
+@media (max-width: 1400px) {
+  .enemieAnimation {
+    height: 420px;
+    top: 21%;
+  }
+  .heroAnimation {
+    height: 377px;
+  }
+}
+@media (max-width: 1200px) {
+  .enemieAnimation {
+    height: 303px;
+    top: 29%;
+  }
+  .heroAnimation {
+    height: 288px;
+    top: 48%;
+  }
+}
+@media (max-width: 940px) {
+  .enemieAnimation {
+    height: 221px;
+    top: 33%;
+  }
+  .heroAnimation {
+    height: 210px;
+    top: 51%;
+  }
+}
+@media (max-width: 930px) {
+  .title {
+    font-size: 60px;
+  }
+}
+
+.swordButton {
+  position: absolute;
+  height: 70px;
+  top: 78%;
+}
+.rightArrow {
+  position: absolute;
+  height: 50px;
+  top: 88%;
+  right:10%;
+}
+.leftArrow {
+  position: absolute;
+  height: 50px;
+  top: 87%;
+  right:20%;
+}
+
+.topArrow {
+  position: absolute;
+  height: 50px;
+  top: 80%;
+  right:14.75%;
+}
+.btnShuriken{
+  position: absolute;
+  height: 70px;
+  top: 58%;
+}
+@media(min-height: 480px) {
+  .rotate {
+    
+    display: block;
+    animation: rotation 4s infinite linear;
+    overflow: hidden;
+    z-index: 4;
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  #overlayMobile{
+    display: block;
+  }
+}

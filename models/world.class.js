@@ -32,6 +32,7 @@ class World {
     this.checkThrowObject();
     this.drawNewShuriken();
     this.endOfGame();
+    
   }
 
 
@@ -52,7 +53,7 @@ class World {
           this.gameOverMusic.play();
           setTimeout(() => {
             this.showGameOverText();
-            console.log("end");
+            
           }, 2000); // 2000 Millisekunden entsprechen 2 Sekunden
         }
       });
@@ -73,6 +74,7 @@ class World {
     let newShuriken;
 
     setInterval(() => {
+      let direction = this.checkDirection();
       if (this.keyboard.D) {
         if (this.ShurikenCounter.length > 0 && i < 4) {
           let shuriken = new ThrowableObject(
@@ -80,8 +82,9 @@ class World {
             this.character.y + 100
           );
           this.throwableObject.push(shuriken);
-          newShuriken = this.throwableObject[i];
-          newShuriken.throw();
+          newShuriken = this.throwableObject[i];+
+          
+          newShuriken.throw(direction);
           this.throwSound.play();
           this.ShurikenCounter.shift();
           i++;
@@ -91,6 +94,10 @@ class World {
         this.handleCollisions(newShuriken, endboss, enemy);
       });
     }, 100);
+  }
+  checkDirection(){
+    let lastPressedKey = lastKeyArr[0];
+    return lastPressedKey;
   }
 
   checkCollisions() {
@@ -219,8 +226,7 @@ class World {
       endboss.hitDamage(1);
       enemy.hitDamage(2);
       this.enmieHurtSound.play();
-      console.log(endboss.energy);
-      console.log(enemy.energy);
+      
     }
   }
 
