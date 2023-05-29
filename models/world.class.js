@@ -50,7 +50,7 @@ class World {
           this.character.energy === 0
         ) {
           this.backgroundMusic.pause();
-          this.gameOverMusic.play();
+          this.MutedOrNot();
           setTimeout(() => {
             this.showGameOverText();
             
@@ -59,6 +59,15 @@ class World {
       });
     });
   }
+
+  MutedOrNot(){
+    if(soundIsOn === false){
+
+      this.gameOverMusic.pause();
+    } else {
+      this.gameOverMusic.play();
+    }
+    };
 
   drawNewShuriken() {
     setInterval(() => {
@@ -221,11 +230,16 @@ class World {
       newShuriken &&
       (newShuriken.isColliding(endboss) || newShuriken.isColliding(enemy))
     ) {
-      enemy.hurtAnimation();
-      endboss.hurtAnimation();
-      endboss.hitDamage(1);
-      enemy.hitDamage(2);
-      this.enmieHurtSound.play();
+      if(enemy.energy === 0){
+        
+      } else {
+
+        enemy.hurtAnimation();
+        endboss.hurtAnimation();
+        endboss.hitDamage(1);
+        enemy.hitDamage(2);
+        this.enmieHurtSound.play();
+      }
       
     }
   }

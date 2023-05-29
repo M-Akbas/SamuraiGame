@@ -8,6 +8,7 @@ class Character extends MovableObject {
     new Audio("audio/hits/hit2.mp3"),
     new Audio("audio/hits/hit3.mp3")
   ];
+  jumping_sound = new Audio("audio/jump/jump1.mp3");
   
   Img_Running = [
     "hero/sprites/run/tile000.png",
@@ -92,7 +93,7 @@ class Character extends MovableObject {
   };
   world;
   walking_sound = new Audio("audio/run/run.mp3");
-  jumping_sound = new Audio("audio/jump/jump1.mp3");
+  
   hurt1_sound = new Audio("audio/hurt/hurt1.mp3");
   hurt2_sound = new Audio("audio/hurt/hurt2.mp3");
 
@@ -120,7 +121,21 @@ class Character extends MovableObject {
   thisX() {
     return this.x;
   }
-  
+  soundEffects(){
+    if(soundIsOn === false){
+      this.swordSounds.forEach(sound => sound.muted = true);
+      this.walking_sound.pause();
+      this.jumping_sound.muted = true;
+      
+    } else { 
+      this.swordSounds.forEach(sound => sound.muted = false);
+      this.walking_sound.play();
+      this.jumping_sound.muted = false;
+      
+     
+    }
+    
+  }
   animate() {
     setInterval(() => {
       this.walking_sound.pause();
@@ -129,7 +144,7 @@ class Character extends MovableObject {
         this.otherDirection = false;
 
         if (!this.world.keyboard.up && !this.isAboveGround()) {
-          this.walking_sound.play();
+          this.soundEffects();
         }
       }
     }, 1000 / 60);
@@ -137,7 +152,8 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.world.keyboard.space) {
         this.playAnimation(this.Img_Attack);
-        this.swordSounds.forEach(sound => sound.play());
+        this.soundEffects();
+         
         setTimeout(() => {
 
           this.offset.left = 60;
@@ -154,12 +170,14 @@ class Character extends MovableObject {
         this.otherDirection = true;
 
         if (!this.world.keyboard.up && !this.isAboveGround()) {
-          this.walking_sound.play();
+          this.soundEffects();   
         }
       }
 
       if (this.world.keyboard.up && !this.isAboveGround()) {
-        this.jumping_sound.play();
+        
+        this.soundEffects(); 
+        this.jumping_sound.play(); 
         this.jump();
       }
       this.world.camera_x = -this.x;

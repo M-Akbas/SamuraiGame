@@ -2,10 +2,15 @@ let canvas;
 let world;
 let soundIsOn = true;
 let buttonSound = new Audio("audio/gameoverMusic/buttonSOund.mp3");
+let keyboard = new Keyboard();
+
+lastKeyArr = [];
+
+
 function playButtonSound() {
   buttonSound.play();
 }
-lastKeyArr = [];
+
 
 function gameStart() {
   let button = document.getElementById("startButton");
@@ -22,20 +27,35 @@ function gameStart() {
   checkButtonsArePressed();
 }
 
-let keyboard = new Keyboard();
+
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
 
   console.log("My Character is", world.character);
 }
+
+
 function muteSound() {
   if (soundIsOn === true) {
     world.backgroundMusic.pause();
+    world.throwSound.muted = true;
+    world.enmieHurtSound.muted = true;
+    
+    for (const sound of world.swordSounds) {
+      sound.muted = true;
+    }
+    
     soundIsOn = false;
     
   } else if (soundIsOn === false) {
     world.backgroundMusic.play();
+    world.throwSound.muted = false;
+    world.enmieHurtSound.muted = false;
+
+    for (const sound of world.swordSounds) {
+      sound.muted = false;
+    }
     soundIsOn = true;
   }
 }
