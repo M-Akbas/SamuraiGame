@@ -1,9 +1,11 @@
 class World {
   swordSounds = [
-    new Audio("audio/hits/hit1.mp3"),
-    new Audio("audio/hits/hit2.mp3"),
-    new Audio("audio/hits/hit3.mp3"),
+    
+    new Audio("audio/hits/Enemy Knight Grunt Sound Effect First Variation.mp3"),
+    new Audio("audio/hurt/enemieHUrt.mp3"),
   ];
+
+
   gameOverMusic = new Audio("audio/gameoverMusic/gameover.mp3");
   enmieHurtSound = new Audio("audio/hurt/enemieHUrt.mp3");
   throwSound = new Audio("audio/jump/throw.sound.mp3");
@@ -11,7 +13,7 @@ class World {
   throwableObject = [];
   character = new Character();
   level = level1;
-  backgroundMusic = new Audio("audio/music/music1.mp3");
+  backgroundMusic = new Audio("audio/music/ZO ぞ SAMURAI Background Theme Music.mp3");
   canvas;
   ctx;
   keyboard;
@@ -19,6 +21,7 @@ class World {
   statusbar = new StatusBar();
   heartIcon = new HeartIcon("healthbar/health.png", 10, 20);
   shurikenIcon = new Shuriken("imgForDesign/shurikenpixel.png", 10, 100);
+
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -32,15 +35,28 @@ class World {
     this.checkThrowObject();
     this.drawNewShuriken();
     this.endOfGame();
-    
   }
 
 
-  showGameOverText() {
+  /**
+   * Zeigt den Game Over-Text an
+   */
+  showGameOverText(enemy ,endboss) {
     let gameOverOverlay = document.getElementById("gameOverOverlay");
     gameOverOverlay.style.display = "block";
+    let gameOverText = document.getElementById("gameOverText");
+    if(enemy.energy === 0 && endboss.energy === 0){
+      gameOverText.innerHTML = "YOU WON!"
+    } else { 
+      gameOverText.innerHTML = "YOU LOSE!"
+    }
+
   }
 
+
+  /**
+   * Beendet das Spiel und zeigt den Game Over-Text an, wenn bestimmte Bedingungen erfüllt sind
+   */
   endOfGame() {
     let endboss = this.level.endboss[0];
     setInterval(() => {
@@ -52,23 +68,29 @@ class World {
           this.backgroundMusic.pause();
           this.MutedOrNot();
           setTimeout(() => {
-            this.showGameOverText();
-            
-          }, 2000); // 2000 Millisekunden entsprechen 2 Sekunden
+            this.showGameOverText(enemy ,endboss);
+          }, 2000); 
         }
       });
     });
   }
 
-  MutedOrNot(){
-    if(soundIsOn === false){
 
+  /**
+   * Überprüft den aktuellen Soundstatus und pausiert oder spielt die Game Over-Musik entsprechend
+   */
+  MutedOrNot() {
+    if (soundIsOn === false) {
       this.gameOverMusic.pause();
     } else {
       this.gameOverMusic.play();
     }
-    };
+  }
 
+
+  /**
+   * Draws a new shuriken periodically if the shuriken counter is not empty.
+   */
   drawNewShuriken() {
     setInterval(() => {
       if (this.ShurikenCounter.length > 0) {
@@ -77,6 +99,10 @@ class World {
     });
   }
 
+
+  /**
+   * Checks if the character throws an object, handles the throwing logic, and checks for collisions between the thrown object, end boss, and enemies.
+   */
   checkThrowObject() {
     let i = 0;
     let endboss = this.level.endboss[0];
@@ -91,24 +117,35 @@ class World {
             this.character.y + 100
           );
           this.throwableObject.push(shuriken);
-          newShuriken = this.throwableObject[i];+
-          
+          newShuriken = this.throwableObject[i];
           newShuriken.throw(direction);
+          
           this.throwSound.play();
           this.ShurikenCounter.shift();
           i++;
         }
       }
       this.level.enemies.forEach((enemy) => {
-        this.handleCollisions(newShuriken, endboss, enemy);
+        this.handleCollisionsEnemy(newShuriken, enemy);
+        this.handleCollisionsEndboss(newShuriken, endboss);
       });
     }, 100);
   }
-  checkDirection(){
+
+
+  /**
+   * Checks the last pressed key and returns the corresponding direction.
+   * @returns {string} The direction based on the last pressed key.
+   */
+  checkDirection() {
     let lastPressedKey = lastKeyArr[0];
     return lastPressedKey;
   }
 
+
+  /**
+   * Checks for collisions between the character, enemies, and end boss, and performs corresponding actions.
+   */
   checkCollisions() {
     let endboss = this.level.endboss[0];
 
@@ -145,6 +182,10 @@ class World {
     }, 100);
   }
 
+
+  /**
+   * Checks the location of enemies and the end boss, and makes them follow the character.
+   */
   checkLocation() {
     const endboss = this.level.endboss[0];
     setInterval(() => {
@@ -155,14 +196,26 @@ class World {
     }, 50);
   }
 
+
+  /**
+   * Sets the world for the character.
+   */
   setWorld() {
     this.character.world = this;
   }
 
+
+  /**
+   * Plays the background music.
+   */
   music() {
     this.backgroundMusic.play();
   }
 
+
+  /**
+   * Draws the game elements on the canvas.
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
     this.ctx.translate(this.camera_x, 0);
@@ -194,6 +247,11 @@ class World {
     });
   }
 
+
+  /**
+   * Adds a game object to the map.
+   * @param {GameObject} mo - The game object to be added.
+   */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -207,12 +265,22 @@ class World {
     }
   }
 
+
+  /**
+   * Adds multiple game objects to the map.
+   * @param {Array<GameObject>} objects - The array of game objects to be added.
+   */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
+
+  /**
+   * Flips the image of a game object horizontally.
+   * @param {GameObject} mo - The game object to flip the image of.
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -220,30 +288,61 @@ class World {
     mo.x = mo.x * -1;
   }
 
+
+  /**
+   * Reverts the image flipping of a game object back to its original state.
+   * @param {GameObject} mo - The game object to revert the image flipping of.
+   */
   flipImageBack(mo) {
     this.ctx.restore();
     mo.x = mo.x * -1;
   }
 
-  handleCollisions(newShuriken, endboss, enemy) {
+
+  /**
+   * Handles collisions between a new shuriken, end boss, and enemy.
+   * @param {ThrowableObject} newShuriken - The new shuriken object.
+   * @param {Enemy} enemy - The enemy object.
+   */
+  handleCollisionsEnemy(newShuriken, enemy) {
     if (
       newShuriken &&
-      (newShuriken.isColliding(endboss) || newShuriken.isColliding(enemy))
+      (newShuriken.isColliding(enemy))
     ) {
-      if(enemy.energy === 0){
-        
+      if (enemy.energy === 0) {
       } else {
-
         enemy.hurtAnimation();
-        endboss.hurtAnimation();
-        endboss.hitDamage(1);
+        
         enemy.hitDamage(2);
         this.enmieHurtSound.play();
       }
-      
     }
   }
 
+  /**
+   * Handles collisions between a new shuriken, end boss, and enemy.
+   * @param {ThrowableObject} newShuriken - The new shuriken object.
+   * @param {Endboss} endboss - The enemy object.
+   */
+  handleCollisionsEndboss(newShuriken, endboss){
+    if (
+      newShuriken &&
+      (newShuriken.isColliding(endboss))
+    ) {
+      if (endboss.energy === 0) {
+      } else {
+        endboss.hurtAnimation();
+        endboss.hitDamage(1);
+        this.enmieHurtSound.play();
+      }
+    }
+  }
+
+
+  /**
+   * Handles the fighting action between the character and an enemy.
+   * @param {Enemy} enemy - The enemy object.
+   */
   isFighting(enemy) {
     if (enemy.energy == 0 || this.character.energy == 0) {
     } else if (enemy.isFighting == true) {
@@ -254,6 +353,11 @@ class World {
     }
   }
 
+
+  /**
+   * Initiates the fight against an enemy.
+   * @param {Enemy} enemy - The enemy object.
+   */
   fightEnemie(enemy) {
     if (enemy.energy == 0) {
     } else {
@@ -267,6 +371,11 @@ class World {
     }
   }
 
+
+  /**
+   * Initiates the fight against the end boss.
+   * @param {Endboss} endboss - The end boss object.
+   */
   fightEndboss(endboss) {
     if (endboss.energy == 0) {
       setTimeout(() => {}, 100);
@@ -277,11 +386,22 @@ class World {
     }
   }
 
+
+  /**
+   * Sets the enemies (enemy and end boss) to the fighting state.
+   * @param {Enemy} enemy - The enemy object.
+   * @param {Endboss} endboss - The end boss object.
+   */
   enemiesAreFighting(enemy, endboss) {
     endboss.isFighting = true;
     enemy.isFighting = true;
   }
 
+
+  /**
+   * Handles the end boss attacking action.
+   * @param {Endboss} endboss - The end boss object.
+   */
   endbossAttacking(endboss) {
     if (endboss.energy == 0 || this.character.energy == 0) {
       // do nothing
@@ -291,6 +411,10 @@ class World {
     }
   }
 
+
+  /**
+   * Checks if the character has collected a shuriken.
+   */
   isShurikenCollected() {
     for (let i = 0; i < this.level.shuriken.length; i++) {
       let shuriken = this.level.shuriken[i];
@@ -303,6 +427,11 @@ class World {
     }
   }
 
+
+  /**
+   * Handles the state of the character and end boss when one of them is defeated.
+   * @param {Endboss} endboss - The end boss object.
+   */
   deadOrAlive(endboss) {
     if (endboss.energy == 0 || this.character.energy == 0) {
       let currentX = endboss.x;
@@ -314,6 +443,11 @@ class World {
     }
   }
 
+
+  /**
+   * Makes the enemy follow the character's position.
+   * @param {Enemy} enemy - The enemy object.
+   */
   enemyFollowChar(enemy) {
     if (enemy.energy == 0) {
       // do nothing
@@ -330,6 +464,11 @@ class World {
     }
   }
 
+
+  /**
+   * Makes the end boss follow the character's position.
+   * @param {Endboss} endboss - The end boss object.
+   */
   endbossFollowChar(endboss) {
     if (endboss.energy == 0) {
       // do nothing

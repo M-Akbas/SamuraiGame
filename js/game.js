@@ -6,12 +6,17 @@ let keyboard = new Keyboard();
 
 lastKeyArr = [];
 
-
+/**
+ * Plays the button sound.
+ */
 function playButtonSound() {
   buttonSound.play();
 }
 
 
+/**
+ * Starts the game by hiding the start button, overlay, and images, and initializing the game.
+ */
 function gameStart() {
   let button = document.getElementById("startButton");
   let overlay = document.getElementById("overlay");
@@ -28,6 +33,9 @@ function gameStart() {
 }
 
 
+/**
+ * Initializes the game by setting up the canvas and creating a new World instance.
+ */
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
@@ -36,18 +44,20 @@ function init() {
 }
 
 
+/**
+ * Mutes or unmutes the game sounds based on the current sound state.
+ */
 function muteSound() {
   if (soundIsOn === true) {
     world.backgroundMusic.pause();
     world.throwSound.muted = true;
     world.enmieHurtSound.muted = true;
-    
+
     for (const sound of world.swordSounds) {
       sound.muted = true;
     }
-    
+
     soundIsOn = false;
-    
   } else if (soundIsOn === false) {
     world.backgroundMusic.play();
     world.throwSound.muted = false;
@@ -59,6 +69,11 @@ function muteSound() {
     soundIsOn = true;
   }
 }
+
+
+/**
+ * Toggles the mute state by changing the background color of the mute button.
+ */
 function toggleMute() {
   let mute = document.getElementsByClassName("muteImg")[0];
   let backgroundColor = mute.style.backgroundColor;
@@ -70,6 +85,11 @@ function toggleMute() {
   }
 }
 
+
+/**
+ * Event listener for keydown event to handle keyboard input.
+ * Sets the corresponding properties in the keyboard object based on the pressed key.
+ */
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == 39) {
     keyboard.right = true;
@@ -95,6 +115,11 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+
+/**
+ * Event listener for keyup event to handle keyboard input.
+ * Resets the corresponding properties in the keyboard object based on the released key.
+ */
 window.addEventListener("keyup", (event) => {
   if (event.keyCode == 39) {
     keyboard.right = false;
@@ -116,6 +141,11 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
+
+/**
+ * Function to check if touch buttons are pressed.
+ * Adds touch event listeners to the corresponding buttons and updates the keyboard object accordingly.
+ */
 function checkButtonsArePressed() {
   setTimeout(() => {
     document
@@ -152,6 +182,11 @@ function checkButtonsArePressed() {
   }, 500);
 }
 
+
+/**
+ * Function to check if touch buttons are released.
+ * Adds touch event listeners to the corresponding buttons and updates the keyboard object accordingly.
+ */
 function checkButtonsAreReleased() {
   setTimeout(() => {
     document.getElementById("btnLeft").addEventListener("touchend", (event) => {

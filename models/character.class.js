@@ -6,10 +6,11 @@ class Character extends MovableObject {
   swordSounds = [
     new Audio("audio/hits/hit1.mp3"),
     new Audio("audio/hits/hit2.mp3"),
-    new Audio("audio/hits/hit3.mp3")
+    new Audio("audio/hits/hit3.mp3"),
   ];
   jumping_sound = new Audio("audio/jump/jump1.mp3");
-  
+  hitSounds = new Audio("audio/hits/hitsounds.mp3");
+
   Img_Running = [
     "hero/sprites/run/tile000.png",
     "hero/sprites/run/tile001.png",
@@ -93,7 +94,7 @@ class Character extends MovableObject {
   };
   world;
   walking_sound = new Audio("audio/run/run.mp3");
-  
+
   hurt1_sound = new Audio("audio/hurt/hurt1.mp3");
   hurt2_sound = new Audio("audio/hurt/hurt2.mp3");
 
@@ -109,80 +110,74 @@ class Character extends MovableObject {
     this.animate();
   }
 
-  enemyStopHit(){
+  
+  /**
+   * Stops the enemy from being hit by playing the complete dead animation.
+   */
+  enemyStopHit() {
     this.playAnimation(this.Img_CompletlyDead);
   }
 
+
+  /**
+   * Triggers the animation for the character when it takes a hit.
+   */
   animationForChar() {
     this.playAnimation(this.Img_TakeHit);
-    
   }
 
+
+  /**
+   * Returns the x-coordinate of the object.
+   * @returns {number} The x-coordinate of the object.
+   */
   thisX() {
     return this.x;
   }
-  soundEffects(){
-    if(soundIsOn === false){
-      this.swordSounds.forEach(sound => sound.muted = true);
-      this.walking_sound.pause();
+
+
+  /**
+   * Controls the sound effects based on the current state of the sound.
+   * If the sound is muted, the sword sounds will be muted and other sounds will be adjusted accordingly.
+   * If the sound is not muted, the sword sounds will be unmuted and other sounds will be adjusted accordingly.
+   */
+  soundEffects() {
+    if (soundIsOn === false) {
+      this.swordSounds.forEach((sound) => (sound.muted = true));
+      this.walking_sound.muted = false;
       this.jumping_sound.muted = true;
-      
-    } else { 
-      this.swordSounds.forEach(sound => sound.muted = false);
-      this.walking_sound.play();
+      this.hitSounds.muted = true;
+    } else {
+      this.swordSounds.forEach((sound) => (sound.muted = false));
+      this.walking_sound.muted = true;
       this.jumping_sound.muted = false;
-      
-     
+      this.hitSounds.muted = false;
     }
-    
   }
-  animate() {
+
+
+  /**
+   * Periodically checks if the right arrow key is pressed and the character is within the level boundaries.
+   * If conditions are met, the character moves to the right, sets the direction to false, and adjusts sound effects if necessary.
+   */
+  movingRight() {
     setInterval(() => {
       this.walking_sound.pause();
       if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
-
         if (!this.world.keyboard.up && !this.isAboveGround()) {
           this.soundEffects();
         }
       }
     }, 1000 / 60);
+  }
 
-    setInterval(() => {
-      if (this.world.keyboard.space) {
-        this.playAnimation(this.Img_Attack);
-        this.soundEffects();
-         
-        setTimeout(() => {
 
-          this.offset.left = 60;
-          this.offset.right = 60;
-        } , 50);  
-        
-      }
-      if(!this.world.keyboard.space){
-        this.offset.left = 150;
-        this.offset.right = 150;
-      }
-      if (this.world.keyboard.left && this.x > 0) {
-        this.moveLeft();
-        this.otherDirection = true;
-
-        if (!this.world.keyboard.up && !this.isAboveGround()) {
-          this.soundEffects();   
-        }
-      }
-
-      if (this.world.keyboard.up && !this.isAboveGround()) {
-        
-        this.soundEffects(); 
-        this.jumping_sound.play(); 
-        this.jump();
-      }
-      this.world.camera_x = -this.x;
-    }, 1000 / 60);
-
+  /**
+   * Periodically checks the character's state and plays the corresponding animation based on the conditions.
+   */
+  isJumping() {
     setInterval(() => {
       let lastImage = this.Img_Dead[6];
       if (this.isAboveGround()) {
@@ -192,12 +187,79 @@ class Character extends MovableObject {
         this.playAnimation(this.Img_Running);
       } else if (this.isDead()) {
         this.playAnimation(this.Img_Dead);
-        if(lastImage){
+        if (lastImage) {
           this.enemyStopHit();
         }
       } else {
         this.playAnimation(this.Img_Standing);
       }
     }, 80);
+  }
+
+
+  /**
+   * Initiates the character's attack animation and plays the corresponding sound effects.
+   */
+  charAttacking() {
+    this.playAnimation(this.Img_Attack);
+    this.soundEffects();
+    this.hitSounds.play();
+
+    setTimeout(() => {
+      this.offset.left = 60;
+      this.offset.right = 60;
+    }, 50);
+  }
+
+
+  /**
+   * Pauses the character's attacking animation by adjusting the offset and pausing the hit sounds.
+   */
+  charPauseAttacking() {
+    this.offset.left = 150;
+    this.offset.right = 150;
+    this.hitSounds.pause();
+  }
+
+
+  /**
+   * Triggers the character's jumping action by playing the jumping sound, applying jump animation, and initiating the jump movement.
+   */
+  charJumping() {
+    this.soundEffects();
+    this.jumping_sound.play();
+    this.jump();
+  }
+
+
+  /**
+   * Initiates the animation loop for the character.
+   * Handles character movement, attacking, jumping, and camera positioning.
+   */
+  animate() {
+    this.movingRight();
+
+    setInterval(() => {
+      if (this.world.keyboard.space) {
+        this.charAttacking();
+      }
+      if (!this.world.keyboard.space) {
+        this.charPauseAttacking();
+      }
+      if (this.world.keyboard.left && this.x > 0) {
+        this.moveLeft();
+        this.otherDirection = true;
+
+        if (!this.world.keyboard.up && !this.isAboveGround()) {
+          this.soundEffects();
+        }
+      }
+      if (this.world.keyboard.up && !this.isAboveGround()) {
+        this.charJumping();
+      }
+      this.world.camera_x = -this.x;
+    }, 1000 / 60);
+
+    this.isJumping();
   }
 }

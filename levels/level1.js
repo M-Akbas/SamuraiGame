@@ -8,12 +8,12 @@ const level1 = new Level(
   [
     new Enemie(10),
     new Enemie(35),
-    new Enemie(40),
-    new Enemie(65),
+    new Enemie(20),
+    new Enemie(15),
     new Enemie(25),
-    new Enemie(45),
-    new Enemie(45),
-    new Enemie(35),
+    new Enemie(15),
+    new Enemie(25),
+    new Enemie(15),
   ],
   [new Endboss()],
   [

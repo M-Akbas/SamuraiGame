@@ -33,8 +33,16 @@ class Enemie extends MovableObject {
     "enemies/skelleton/dead/tile003.png",
   ];
   Img_Hurt = [
+    "enemies/skelleton/dead/tile001.png",
+    "enemies/skelleton/hurt/pngwing.com (1) Kopie 2.png",
     "enemies/skelleton/hurt/tile000.png",
+    "enemies/skelleton/hurt/pngwing.com (1).png",
     "enemies/skelleton/hurt/tile001.png",
+    "enemies/skelleton/dead/tile003.png",
+    "enemies/skelleton/hurt/pngwing.com (1) Kopie.png",
+    "enemies/skelleton/hurt/tile001.png",
+    "enemies/skelleton/hurt/pngwing.com (1).png",
+    
   ];
 
   Img_CompletelyDead = [
@@ -92,7 +100,7 @@ class Enemie extends MovableObject {
       } else {
         this.playAnimation(this.Img_Running);
       }
-    }, 200);
+    }, 120);
   }
 
   hurtAnimation() {
