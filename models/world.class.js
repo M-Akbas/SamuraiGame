@@ -103,11 +103,11 @@ class World {
   /**
    * Checks if the character throws an object, handles the throwing logic, and checks for collisions between the thrown object, end boss, and enemies.
    */
-  checkThrowObject() {
+   checkThrowObject() {
     let i = 0;
     let endboss = this.level.endboss[0];
     let newShuriken;
-
+  
     setInterval(() => {
       let direction = this.checkDirection();
       if (this.keyboard.D) {
@@ -116,9 +116,12 @@ class World {
             this.character.x + 190,
             this.character.y + 100
           );
-          this.throwableObject.push(shuriken);
+          
+          this.throwableObject.push(shuriken);         
           newShuriken = this.throwableObject[i];
+          
           newShuriken.throw(direction);
+        
           
           this.throwSound.play();
           this.ShurikenCounter.shift();
@@ -131,6 +134,7 @@ class World {
       });
     }, 100);
   }
+  
 
 
   /**

@@ -6,6 +6,36 @@ let keyboard = new Keyboard();
 
 lastKeyArr = [];
 
+function settingPopUp() {
+  let popUp = document.querySelector('.settings');
+  let displayStatus = popUp.style.display;
+
+  if (displayStatus === "block") {
+    popUp.style.display = "none";
+  } else {
+    popUp.style.display = "block";
+  }
+}
+
+
+
+function fullscreen() {
+  let element = document.getElementById("fullscreen");
+  let canvas = document.getElementById("canvas");
+  canvas.style.height = "100vh";
+  canvas.style.width = "100vw";
+
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
+
 /**
  * Plays the button sound.
  */

@@ -42,7 +42,6 @@ class Enemie extends MovableObject {
     "enemies/skelleton/hurt/pngwing.com (1) Kopie.png",
     "enemies/skelleton/hurt/tile001.png",
     "enemies/skelleton/hurt/pngwing.com (1).png",
-    
   ];
 
   Img_CompletelyDead = [
@@ -69,18 +68,31 @@ class Enemie extends MovableObject {
     this.animate();
   }
 
+
+  /**
+   * Triggers the animation for the enemy being dead.
+   */
   deadAnimation() {
     this.playAnimation(this.Img_Dead);
     let lastImage = this.Img_Dead[3];
     if (lastImage) {
       this.playAnimation(this.Img_CompletelyDead);
-      
     }
   }
 
+
+  /**
+   * Triggers the animation for the enemy attacking.
+   */
   animationForEnemie() {
     this.playAnimation(this.Img_Attacking);
   }
+
+
+  /**
+   * Reduces the energy of the object by the specified damage amount.
+   * @param {number} damage - The amount of damage to be applied.
+   */
   hitDamage(damage) {
     this.energy -= damage;
     if (this.energy < 0) {
@@ -88,8 +100,9 @@ class Enemie extends MovableObject {
     }
   }
 
- 
-
+  /**
+   * Animates the object by repeatedly calling the moveLeft() method and updating the animation based on the energy level.
+   */
   animate() {
     setInterval(() => {
       this.moveLeft(this.energy);
@@ -102,7 +115,11 @@ class Enemie extends MovableObject {
       }
     }, 120);
   }
+  
 
+  /**
+   * Plays the animation for the object being hurt.
+   */
   hurtAnimation() {
     this.playAnimation(this.Img_Hurt);
   }

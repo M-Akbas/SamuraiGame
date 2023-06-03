@@ -3,10 +3,9 @@ class ThrowableObject extends MovableObject {
     super().loadImage("hero/sprites/shuriken.png");
     this.x = x;
     this.y = y;
-    
-   
     this.height = 40;
     this.width = 40;
+    
   }
 
   throw(direction) {
@@ -17,6 +16,7 @@ class ThrowableObject extends MovableObject {
       setInterval(() => {
           
           this.x += 15;
+          
          
       }, 50);
     } else {
@@ -25,8 +25,9 @@ class ThrowableObject extends MovableObject {
       setInterval(() => {
           
           this.x -= 15;
-         
+          
       }, 50);
     }
   }
 }
+

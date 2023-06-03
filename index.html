@@ -50,7 +50,8 @@
     <div id="overlay">
       <div id="content">
         <header>
-          <img class="logo" src="hero/sprites/standing/tile000.png" />
+          <img class="logo" src="imgForDesign/1 Kopie.png" />
+          <div class="header-text">Takeshi Ishiro - The Last Samurai</div>
           <img
             id="mute"
             onclick="muteSound() ,toggleMute()"
@@ -58,9 +59,10 @@
             src="imgForDesign/mute.png"
             alt=""
           />
+          
         </header>
-        <h2>Takeshi Ichiro 武士一郎</h2>
-        <h1 class="title">The Last Samurai</h1>
+        <h2>武士一郎</h2>
+        
         <div>
           <div class="buttons">
             <img
@@ -91,21 +93,27 @@
               src="mobileButtons/mobileButtonsShuriken.png"
               alt=""
             />
-            <img class="rotate" src="imgForDesign/rotate.jpg" alt="">
+            <img class="rotate" src="imgForDesign/rotate.jpg" alt="" />
             <div id="overlayMobile"></div>
           </div>
-          <canvas id="canvas" width="720" height="480"> </canvas>
+          <div class="menu">
+            <button onclick="settingPopUp()" class="btnOfMenu">Settings</button>
+            <button class="btnOfMenu">History</button>
+            <button class="btnOfMenu">Programmed by</button>
+          </div>
+          <div id="fullscreen">
+            <canvas id="canvas" width="720" height="480"> </canvas>
+          </div>
         </div>
         <button id="startButton" onclick="gameStart(), playButtonSound()">
           START GAME
         </button>
-        <div class="settings">
-          <div class="setting">↑ <b>JUMP</b></div>
-          <div class="setting">→ <b>RIGHT</b></div>
-          <div class="setting">← <b>LEFT</b></div>
-          <div>spacebar - <b>ATTACK</b></div>
-          <div class="setting">D - <b>SHURIKEN</b></div>
+        
+        <div style="display: none;" class="settings"> 
+          <h1>Settings</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
+        
 
         <div id="H-Img" class="animationHero">
           <img
