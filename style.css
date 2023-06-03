@@ -7,23 +7,80 @@ body {
   width: 99%;
   background-size: 1000px;
 }
+.d-flex{
+  display: flex;
+  align-items: center;
+}
 .safari-header {
   display: none !important;
 }
-.settings{
+.playAgainBtn{
+  position: absolute;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #343a40; /* dunkler Hintergrund */
+  color: #fff; /* helle Schrift */
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif; /* coole Schrift */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
   
+  top: 50%;
+  font-family: "Press Start 2P";
+}
+.menuSettings{
+  color: #343a40;
+}
+.spaceBar{
+  height: 80px;
+}
+.settings{
+  font-size: 20px;
+  overflow-y: scroll;
   position: absolute;
   top: 28%;
   left: 2;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 20px;
-  color: rgb(5, 66, 120);
-  background-color: rgba(255, 255, 255, 0.858);
+  color: #343a40;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 40vh;
-  width: 40vw;
+  width: 30vw;
+}
+.history{
+  overflow-y: scroll;
+  position: absolute;
+  top: 28%;
+  left: 2;
+  border-radius: 10px;
+  padding: 20px;
+  color: #343a40;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+  width: 30vw;
+}
+.programmedBy{
+  overflow-y: scroll;
+  position: absolute;
+  top: 28%;
+  left: 2;
+  border-radius: 10px;
+  padding: 20px;
+  color: #343a40;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+  width: 30vw;
 }
 header {
   background-color: rgb(10, 10, 10);
@@ -65,10 +122,12 @@ header {
 
 
 .menu {
+  margin-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(212, 212, 212, 0.86);
+  padding: 5px;
+  background-color: #61536D;
   border-top-right-radius:20px ;
   border-top-left-radius:20px ;
   

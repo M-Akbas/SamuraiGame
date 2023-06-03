@@ -8,10 +8,45 @@ lastKeyArr = [];
 
 function settingPopUp() {
   let popUp = document.querySelector('.settings');
+  let historyPopUp = document.querySelector('.history');
+  let byPopUp = document.querySelector('.programmedBy');
   let displayStatus = popUp.style.display;
-
+  
   if (displayStatus === "block") {
     popUp.style.display = "none";
+    byPopUp.style.display = "none";
+    historyPopUp.style.display = "none";
+  } else {
+    popUp.style.display = "block";
+  }
+}
+
+function historyPopUp() {
+  let popUp = document.querySelector('.history');
+  let settingPopUp = document.querySelector('.settings');
+  let byPopUp = document.querySelector('.programmedBy');
+  let displayStatus = popUp.style.display;
+  
+  if (displayStatus === "block") {
+    popUp.style.display = "none";
+    settingPopUp.style.display = "none"
+    byPopUp.style.display = "none";
+  } else {
+    popUp.style.display = "block";
+  }
+}
+
+
+function byPopUp() {
+  let popUp = document.querySelector('.programmedBy');
+  let settingPopUp = document.querySelector('.settings');
+  let historyPopUp = document.querySelector('.history');
+  let displayStatus = popUp.style.display;
+  
+  if (displayStatus === "block") {
+    popUp.style.display = "none";
+    historyPopUp.style.display = "none";
+    settingPopUp.style.display = "none";
   } else {
     popUp.style.display = "block";
   }

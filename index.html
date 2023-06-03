@@ -39,7 +39,7 @@
     <div style="display: none" id="gameOverOverlay">
       <div id="gameOverContent">
         <div id="gameOverText" class="gameOver"></div>
-        <button
+        <button class="playAgainBtn"
           onclick="location.reload(), playButtonSound();
         "
         >
@@ -98,8 +98,8 @@
           </div>
           <div class="menu">
             <button onclick="settingPopUp()" class="btnOfMenu">Settings</button>
-            <button class="btnOfMenu">History</button>
-            <button class="btnOfMenu">Programmed by</button>
+            <button onclick="historyPopUp()"class="btnOfMenu">History</button>
+            <button onclick="byPopUp()"class="btnOfMenu">Programmed by</button>
           </div>
           <div id="fullscreen">
             <canvas id="canvas" width="720" height="480"> </canvas>
@@ -110,8 +110,41 @@
         </button>
         
         <div style="display: none;" class="settings"> 
-          <h1>Settings</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <h2 class="menuSettings">Settings</h2>
+          <p>
+            <div>⇪  JUMP</div>
+            <div>⇨  MOVE-RIGHT</div>
+            <div>⇦  MOVE-LEFT</div>
+            <div class="d-flex"><img class="spaceBar" src="imgForDesign/spacebar.png" alt=""/> ATTACK</div>
+          </p>
+        </div>
+        <div style="display: none;" class="history"> 
+          <h2 class="menuSettings">History</h2>
+          <p>In a world consumed by darkness, Takeshi Ichiro, the last samurai, emerged as a beacon of hope. Skeleton warriors and demon samurai plagued the land, trapping the souls of his loved ones and plunging the world into despair. <br></br>
+
+            With his trusty sword in hand, Takeshi embarked on a perilous journey. He battled countless skeletal warriors, showcasing his unrivaled skill and unwavering determination. Each victory fueled his resolve to bring back the light and free the trapped souls.<br></br>
+            
+            At the heart of the darkness awaited the Master of Demons, the ultimate adversary. Takeshi faced this formidable foe, fighting with all his might. The clash was a test of skill, but also a testament to his undying love for his family and friends.
+            
+            In a climactic showdown, Takeshi's blade struck true, vanquishing the Master of Demons. The darkness dispersed, and the souls of the trapped were set free. Light and life returned to the world, thanks to Takeshi's courage and sacrifice.<br></br>
+            
+            Takeshi's journey was not just about defeating evil but also about upholding the legacy of the samurai. His triumph became a legend, inspiring future generations to stand against darkness and protect what they hold dear.<br></br>
+            
+            And so, the last samurai's name echoed through the ages, a symbol of resilience and the enduring spirit of a true warrior.</p>
+        </div>
+        <div style="display: none;" class="programmedBy"> 
+          <h2 class="menuSettings">Programmed By</h2>
+          <p>Muhammed Akbas, a participant of the Developer Academy, embarked on an exhilarating journey to create this project. He found it to be one of the coolest endeavors he had ever undertaken, as it provided ample opportunities for learning and growth.<br></br>
+
+            Being passionate about both programming and design, Muhammed took it upon himself to carefully craft the visual aspects of the game. With a deep fascination for Japanese culture and a particular interest in samurai, he decided to incorporate these elements into his creation.
+            
+            Driven by his curiosity and admiration for the samurai, Muhammed strived to make the game a captivating experience for players. He delved into the intricacies of samurai warriors and their battles, aiming to portray their courage and honor in the virtual realm.<br></br>
+            
+            Through this project, Muhammed not only showcased his programming skills but also explored his creativity and artistic vision. He pushed himself to bring forth a game that would captivate players and immerse them in the fascinating world of samurai warriors and their struggles against <br></br>supernatural adversaries.
+            
+            With a sense of accomplishment, Muhammed eagerly awaits the players' reactions to his creation. He hopes that they will appreciate the dedication and passion he poured into the game and that it will provide them with an exciting and educational experience.<br></br>
+            
+            Programmed by Muhammed Akbas, this game stands as a testament to his love for learning, his appreciation for design, and his deep fascination with the captivating world of samurai.</p>
         </div>
         
 
