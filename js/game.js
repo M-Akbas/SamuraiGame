@@ -1,11 +1,13 @@
+
+
 let canvas;
 let world;
 let soundIsOn = true;
 let buttonSound = new Audio("audio/gameoverMusic/buttonSOund.mp3");
 let keyboard = new Keyboard();
+let enemies = new Enemie();
 
 lastKeyArr = [];
-
 function settingPopUp() {
   let popUp = document.querySelector('.settings');
   let historyPopUp = document.querySelector('.history');
@@ -71,6 +73,28 @@ function fullscreen() {
   }
 }
 
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+document.addEventListener('fullscreenchange', function(event) {
+  if (!document.fullscreenElement) {
+    // Vollbildmodus wurde beendet
+    let canvas = document.getElementById("canvas");
+    canvas.style.height = ""; // Setzt die Höhe zurück
+    canvas.style.width = ""; // Setzt die Breite zurück
+  }
+});
+
+
 /**
  * Plays the button sound.
  */
@@ -104,8 +128,7 @@ function gameStart() {
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
-
-  console.log("My Character is", world.character);
+  enemies.startToRun();
 }
 
 
