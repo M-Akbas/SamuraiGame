@@ -7,6 +7,7 @@ let buttonSound = new Audio("audio/gameoverMusic/buttonSOund.mp3");
 let keyboard = new Keyboard();
 let enemies = new Enemie();
 
+
 lastKeyArr = [];
 function settingPopUp() {
   let popUp = document.querySelector('.settings');
@@ -125,10 +126,11 @@ function gameStart() {
 /**
  * Initializes the game by setting up the canvas and creating a new World instance.
  */
-function init() {
+async function init() {
+  
   canvas = document.getElementById("canvas");
+  initLevel();
   world = new World(canvas, keyboard);
-  enemies.startToRun();
 }
 
 

@@ -6,24 +6,25 @@ body {
   height: 100%;
   width: 99%;
   background-size: 1000px;
+  font-family: "Roboto", sans-serif;
 }
-.d-flex{
+.d-flex {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.fullscreen{
+.fullscreen {
   cursor: pointer;
   object-fit: cover;
   height: 80px;
 }
-.fullscreenDiv{
+.fullscreenDiv {
   margin-left: 200px;
 }
 .safari-header {
   display: none !important;
 }
-.playAgainBtn{
+.playAgainBtn {
   position: absolute;
   display: inline-block;
   padding: 10px 20px;
@@ -35,56 +36,74 @@ body {
   font-family: "Montserrat", sans-serif; /* coole Schrift */
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  
+
   top: 50%;
   font-family: "Press Start 2P";
 }
-.menuSettings{
-  color: #343a40;
+.menuSettings {
+  border-radius: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  background-color: #61536d;
+  padding: 20px;
 }
-.spaceBar{
+.spaceBar {
   height: 80px;
 }
-.settings{
+.settings1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.settings1 p {
+  font-size: 18px;
+  color: #b5b5b5;
+}
+.settings {
+  border: 2px solid rgb(6, 6, 6);
   font-size: 20px;
-  overflow-y: scroll;
   position: absolute;
   top: 28%;
   left: 2;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 20px;
-  color: #343a40;
-  background-color: whitesmoke;
+  color: #e1e1e1;
+  background-color: rgb(19, 19, 19);
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 40vh;
   width: 30vw;
 }
-.history{
+.history {
+  border: 2px solid rgb(6, 6, 6);
   overflow-y: scroll;
   position: absolute;
   top: 28%;
   left: 2;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 20px;
-  color: #343a40;
-  background-color: whitesmoke;
+  color: #e1e1e1;
+  background-color: rgb(19, 19, 19);
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 40vh;
   width: 30vw;
 }
-.programmedBy{
+.programmedBy {
+  border: 2px solid rgb(6, 6, 6);
   overflow-y: scroll;
   position: absolute;
   top: 28%;
   left: 2;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 20px;
-  color: #343a40;
-  background-color: whitesmoke;
+  color: #e1e1e1;
+  background-color: rgb(19, 19, 19);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +123,7 @@ header {
   border-radius: 50%;
   margin-right: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
 @keyframes rotation {
@@ -129,23 +149,20 @@ header {
   margin-left: 40px;
 }
 
-
 .menu {
   margin-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
-  background-color: #61536D;
-  border-top-right-radius:20px ;
-  border-top-left-radius:20px ;
-  
+  background-color: #61536d;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
-.letter-d{
+.letter-d {
   height: 30px;
 }
 .btnOfMenu {
-  
   padding: 10px 20px;
   font-size: 16px;
   color: rgba(236, 236, 236, 0.886);
@@ -166,7 +183,6 @@ header {
   transform: scale(0.9);
 }
 
-
 body::before {
   content: "";
   position: absolute;
@@ -184,16 +200,15 @@ body::before {
 }
 .header-text {
   color: whitesmoke;
-  font-family: "Times New Roman", Times, serif;
+
   font-weight: 800;
   font-size: 20px;
 }
 
 h1 {
   margin: 0;
-  
+
   font-size: 95px;
-  font-family: "Times New Roman", Times, serif;
 }
 h2 {
   color: rgba(245, 245, 245, 0.563);
@@ -217,8 +232,7 @@ h2 {
   z-index: 1;
   display: none;
 }
-#startButton{
-  
+#startButton {
   position: absolute;
   display: inline-block;
   padding: 10px 20px;
@@ -229,17 +243,20 @@ h2 {
   font-size: 24px;
   font-family: "Montserrat", sans-serif; /* coole Schrift */
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  
+  transition: 225ms all ease-in;
   top: 50%;
   font-family: "Press Start 2P";
+}
+
+#startButton:hover{
+  transform: scale(1.1);
 }
 #content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.btnOfMenu{
+.btnOfMenu {
   margin-left: 10px;
   margin-right: 10px;
   background-color: transparent;
@@ -251,7 +268,6 @@ h2 {
   text-decoration: none;
   cursor: pointer;
 }
-
 
 button:hover {
   background-color: #c11818d3;
@@ -525,4 +541,17 @@ button:hover {
   #overlayMobile {
     display: block;
   }
+}
+
+/* Für Webkit-basierte Browser */
+::-webkit-scrollbar-track {
+  border: 1px solid black;
+  background-color: #131313;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #61536d;
+}
+::-webkit-scrollbar {
+  width: 10px;
 }

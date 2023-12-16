@@ -1,6 +1,5 @@
 class Enemie extends MovableObject {
   // Enemie extends classes from MovableObject
-  started = false;
   y = 222;
   width = 210;
   height = 200;
@@ -101,7 +100,7 @@ class Enemie extends MovableObject {
    * Animates the object by repeatedly calling the moveLeft() method and updating the animation based on the energy level.
    */
   animate() {
-    if (this.started) {
+    
       setInterval(() => {
         this.moveLeft(this.energy);
       }, 1000 / 60);
@@ -112,13 +111,10 @@ class Enemie extends MovableObject {
           this.playAnimation(this.Img_Running);
         }
       }, 120);
-    }
+    
   }
 
-  startToRun() {
-    this.started == true;
-    console.log(this.started);
-  }
+
 
   /**
    * Plays the animation for the object being hurt.
