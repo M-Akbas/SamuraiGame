@@ -1,172 +1,156 @@
 <!DOCTYPE html>
 <html translate="no">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <script src="models/drawable-object.class.js"></script>
-    <script src="models/movable-object.class.js"></script>
-    <script src="models/throwable-object.class.js"></script>
-    <script src="models/enemie.class.js"></script>
-    <script src="models/level.class.js"></script>
-    <script src="models/status-bar.class.js"></script>
-    <script src="models/endboss.class.js"></script>
-    <script src="models/background.class.js"></script>
-    <script src="models/character.class.js"></script>
-    <script src="models/floor.class.js"></script>
-    <script src="models/lamps.class.js"></script>
-    <script src="models/shop.class.js"></script>
-    <script src="models/rocks.class.js"></script>
-    <script src="models/decoration.class.js"></script>
-    <script src="models/keyboard.class.js"></script>
-    <script src="models/secondFloor.class.js"></script>
-    <script src="models/heartIcon.class.js"></script>
-    <script src="models/shuriken.class.js"></script>
-    <script src="levels/level1.js"></script>
-    <script src="models/world.class.js"></script>
-    <script src="js/game.js"></script>
-    <link rel="icon" type="image/x-icon" href="img/favicon.jpg" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Takeshi Ichiro: The Last Samurai</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div style="display: none" id="gameOverOverlay">
-      <div id="gameOverContent">
-        <div id="gameOverText" class="gameOver"></div>
-        <button class="playAgainBtn"
-          onclick="location.reload(), playButtonSound();
-        "
-        >
-          PLAY AGAIN
-        </button>
-      </div>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <script src="models/drawable-object.class.js"></script>
+  <script src="models/movable-object.class.js"></script>
+  <script src="models/throwable-object.class.js"></script>
+  <script src="models/enemie.class.js"></script>
+  <script src="models/level.class.js"></script>
+  <script src="models/status-bar.class.js"></script>
+  <script src="models/endboss.class.js"></script>
+  <script src="models/background.class.js"></script>
+  <script src="models/character.class.js"></script>
+  <script src="models/floor.class.js"></script>
+  <script src="models/lamps.class.js"></script>
+  <script src="models/shop.class.js"></script>
+  <script src="models/rocks.class.js"></script>
+  <script src="models/decoration.class.js"></script>
+  <script src="models/keyboard.class.js"></script>
+  <script src="models/secondFloor.class.js"></script>
+  <script src="models/heartIcon.class.js"></script>
+  <script src="models/shuriken.class.js"></script>
+  <script src="levels/level1.js"></script>
+  <script src="models/world.class.js"></script>
+  <script src="js/game.js"></script>
+  <link rel="icon" type="image/x-icon" href="img/favicon.jpg" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Takeshi Ichiro: The Last Samurai</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div style="display: none" id="gameOverOverlay">
+    <div id="gameOverContent">
+      <div id="gameOverText" class="gameOver"></div>
+      <button class="playAgainBtn" onclick="location.reload(), playButtonSound();
+        ">
+        PLAY AGAIN
+      </button>
     </div>
+  </div>
 
 
-    <div id="overlay">
-      <div id="content">
-        <header>
-          <img class="logo" src="img/logo2.png" />
-          <div class="header-text">TAKESHI ISHIRO - THE LAST SAMURAI</div>
-          <img
-            id="mute"
-            onclick="muteSound() ,toggleMute()"
-            class="muteImg"
-            src="imgForDesign/mute.png"
-            alt=""
-          />
-          
-        </header>
-        <h2>武士一郎</h2>
-        
-        <div>
-          <div class="buttons">
-            <img
-              id="btnAttack"
-              class="swordButton"
-              src="mobileButtons/sword.png"
-            />
-            <img
-              onclick="muteSound() ,toggleMute()"
-              id="mute"
-              class="muteImg"
-              src="imgForDesign/mute.png"
-            />
-            <img
-              id="btnLeft"
-              class="leftArrow"
-              src="mobileButtons/tile000.png"
-            />
-            <img id="btnUp" class="topArrow" src="mobileButtons/tile001.png" />
-            <img
-              id="btnRight"
-              class="rightArrow"
-              src="mobileButtons/tile003.png"
-            />
-            <img
-              id="btnShuriken"
-              class="btnShuriken"
-              src="mobileButtons/mobileButtonsShuriken.png"
-              alt=""
-            />
-            <img class="rotate" src="imgForDesign/rotate.jpg" alt="" />
-            <div id="overlayMobile"></div>
-          </div>
-          <div class="menu">
-            <button onclick="settingPopUp()" class="btnOfMenu">Settings</button>
-            <button onclick="historyPopUp()"class="btnOfMenu">History</button>
-            <button onclick="byPopUp()"class="btnOfMenu">Programmed by</button>
-            <div onclick="fullscreen()"class="fullscreenDiv">
+  <div id="overlay">
+    <div id="content">
+      <header>
+        <img class="logo" src="img/logo2.png" />
+        <div class="header-text">TAKESHI ISHIRO - THE LAST SAMURAI</div>
+        <img id="mute" onclick="muteSound() ,toggleMute()" class="muteImg" src="imgForDesign/mute.png" alt="" />
+
+      </header>
+      <h2>武士一郎</h2>
+
+      <div>
+        <div class="buttons">
+          <img id="btnAttack" class="swordButton" src="mobileButtons/sword.png" />
+          <img onclick="muteSound() ,toggleMute()" id="mute" class="muteImg" src="imgForDesign/mute.png" />
+          <img id="btnLeft" class="leftArrow" src="mobileButtons/tile000.png" />
+          <img id="btnUp" class="topArrow" src="mobileButtons/tile001.png" />
+          <img id="btnRight" class="rightArrow" src="mobileButtons/tile003.png" />
+          <img id="btnShuriken" class="btnShuriken" src="mobileButtons/mobileButtonsShuriken.png" alt="" />
+          <img class="rotate" src="imgForDesign/rotate.jpg" alt="" />
+          <div id="overlayMobile"></div>
+        </div>
+        <div class="menu">
+          <button onclick="settingPopUp()" class="btnOfMenu">Settings</button>
+          <button onclick="historyPopUp()" class="btnOfMenu">History</button>
+          <button onclick="byPopUp()" class="btnOfMenu">Programmed by</button>
+          <div onclick="fullscreen()" class="fullscreenDiv">
             <img class="fullscreen" src="imgForDesign/fullscreen.png" alt="">
-            </div>
-          </div>
-          <div id="fullscreen">
-            <canvas id="canvas" width="720" height="480"> </canvas>
           </div>
         </div>
-        <button id="startButton" onclick="gameStart(), playButtonSound()">
-          START GAME
-        </button>
-        
-        <div style="display: none;" class="settings"> 
-          <div class="menuSettings">Settings</div>
-          <div class="settings1">
-            <p>Here's a quick shot of the game.</p>
-            <div><b>Running:</b>  Press the left and right key</div>
-            <div><b>Jumping:</b>  Press the up key</div>
-            <div><b>Attacking:</b>  Press the spacebar</div>
-            <div><b>Throwing:</b>  Press the letter 'D'</div>
-          </div>
-        </div>
-        <div style="display: none;" class="history"> 
-          <div class="menuSettings">History</div>
-          <p>In a world consumed by darkness, Takeshi Ichiro, the last samurai, emerged as a beacon of hope. Skeleton warriors and demon samurai plagued the land, trapping the souls of his loved ones and plunging the world into despair. <br></br>
-            With his trusty sword in hand, Takeshi embarked on a perilous journey. He battled countless skeletal warriors, showcasing his unrivaled skill and unwavering determination. Each victory fueled his resolve to bring back the light and free the trapped souls.<br></br>
-            At the heart of the darkness awaited the Master of Demons, the ultimate adversary. Takeshi faced this formidable foe, fighting with all his might. The clash was a test of skill, but also a testament to his undying love for his family and friends.
-            
-            In a climactic showdown, Takeshi's blade struck true, vanquishing the Master of Demons. The darkness dispersed, and the souls of the trapped were set free. Light and life returned to the world, thanks to Takeshi's courage and sacrifice.<br></br>
-            
-            Takeshi's journey was not just about defeating evil but also about upholding the legacy of the samurai. His triumph became a legend, inspiring future generations to stand against darkness and protect what they hold dear.<br></br>
-            
-            And so, the last samurai's name echoed through the ages, a symbol of resilience and the enduring spirit of a true warrior.</p>
-        </div>
-        <div style="display: none;" class="programmedBy"> 
-          <div class="menuSettings">Programmed By</div>
-          <p>Muhammed Akbas, a participant of the Developer Academy, embarked on an exhilarating journey to create this project. He found it to be one of the coolest endeavors he had ever undertaken, as it provided ample opportunities for learning and growth.<br></br>
-
-            Being passionate about both programming and design, Muhammed took it upon himself to carefully craft the visual aspects of the game. With a deep fascination for Japanese culture and a particular interest in samurai, he decided to incorporate these elements into his creation.
-            
-            Driven by his curiosity and admiration for the samurai, Muhammed strived to make the game a captivating experience for players. He delved into the intricacies of samurai warriors and their battles, aiming to portray their courage and honor in the virtual realm.<br></br>
-            
-            Through this project, Muhammed not only showcased his programming skills but also explored his creativity and artistic vision. He pushed himself to bring forth a game that would captivate players and immerse them in the fascinating world of samurai warriors and their struggles against <br></br>supernatural adversaries.
-            
-            With a sense of accomplishment, Muhammed eagerly awaits the players' reactions to his creation. He hopes that they will appreciate the dedication and passion he poured into the game and that it will provide them with an exciting and educational experience.<br></br>
-            
-            Programmed by Muhammed Akbas, this game stands as a testament to his love for learning, his appreciation for design, and his deep fascination with the captivating world of samurai.</p>
-        </div>
-        
-
-        <div id="H-Img" class="animationHero">
-          <img
-            class="heroAnimation"
-            src="imgForDesign/heroGameCover.png"
-            alt="hero"
-          />
-        </div>
-        <div id="E-Img" class="enemieAnimation">
-          <img
-            class="enemieAnimation"
-            src="imgForDesign/enemyGameCover.png"
-            alt="enemie"
-          />
+        <div id="fullscreen">
+          <canvas onclick="closeAllPopUp()" id="canvas" width="720" height="480"> </canvas>
         </div>
       </div>
+      <button id="startButton" onclick="gameStart(), playButtonSound()">
+        START GAME
+      </button>
+
+      <div style="display: none;" class="settings">
+        <div class="menuSettings">Settings</div>
+        <div class="settings1">
+          <p>Here's a quick shot of the game.</p>
+          <div><b>Running:</b> Press the left and right key</div>
+          <div><b>Jumping:</b> Press the up key</div>
+          <div><b>Attacking:</b> Press the spacebar</div>
+          <div><b>Throwing:</b> Press the letter 'D'</div>
+        </div>
+      </div>
+      <div style="display: none;" class="history">
+        <div class="menuSettings">History</div>
+        <p>In a world consumed by darkness, Takeshi Ichiro, the last samurai, emerged as a beacon of hope. Skeleton
+          warriors and demon samurai plagued the land, trapping the souls of his loved ones and plunging the world into
+          despair. <br></br>
+          With his trusty sword in hand, Takeshi embarked on a perilous journey. He battled countless skeletal warriors,
+          showcasing his unrivaled skill and unwavering determination. Each victory fueled his resolve to bring back the
+          light and free the trapped souls.<br></br>
+          At the heart of the darkness awaited the Master of Demons, the ultimate adversary. Takeshi faced this
+          formidable foe, fighting with all his might. The clash was a test of skill, but also a testament to his
+          undying love for his family and friends.
+
+          In a climactic showdown, Takeshi's blade struck true, vanquishing the Master of Demons. The darkness
+          dispersed, and the souls of the trapped were set free. Light and life returned to the world, thanks to
+          Takeshi's courage and sacrifice.<br></br>
+
+          Takeshi's journey was not just about defeating evil but also about upholding the legacy of the samurai. His
+          triumph became a legend, inspiring future generations to stand against darkness and protect what they hold
+          dear.<br></br>
+
+          And so, the last samurai's name echoed through the ages, a symbol of resilience and the enduring spirit of a
+          true warrior.</p>
+      </div>
+      <div style="display: none;" class="programmedBy">
+        <div class="menuSettings">Programmed By</div>
+        <p>Muhammed Akbas, a participant of the Developer Academy, embarked on an exhilarating journey to create this
+          project. He found it to be one of the coolest endeavors he had ever undertaken, as it provided ample
+          opportunities for learning and growth.<br></br>
+
+          Being passionate about both programming and design, Muhammed took it upon himself to carefully craft the
+          visual aspects of the game. With a deep fascination for Japanese culture and a particular interest in samurai,
+          he decided to incorporate these elements into his creation.
+
+          Driven by his curiosity and admiration for the samurai, Muhammed strived to make the game a captivating
+          experience for players. He delved into the intricacies of samurai warriors and their battles, aiming to
+          portray their courage and honor in the virtual realm.<br></br>
+
+          Through this project, Muhammed not only showcased his programming skills but also explored his creativity and
+          artistic vision. He pushed himself to bring forth a game that would captivate players and immerse them in the
+          fascinating world of samurai warriors and their struggles against <br></br>supernatural adversaries.
+
+          With a sense of accomplishment, Muhammed eagerly awaits the players' reactions to his creation. He hopes that
+          they will appreciate the dedication and passion he poured into the game and that it will provide them with an
+          exciting and educational experience.<br></br>
+
+          Programmed by Muhammed Akbas, this game stands as a testament to his love for learning, his appreciation for
+          design, and his deep fascination with the captivating world of samurai.</p>
+      </div>
+
+
+      <div id="H-Img" class="animationHero">
+        <img class="heroAnimation" src="imgForDesign/heroGameCover.png" alt="hero" />
+      </div>
+      <div id="E-Img" class="enemieAnimation">
+        <img class="enemieAnimation" src="imgForDesign/enemyGameCover.png" alt="enemie" />
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

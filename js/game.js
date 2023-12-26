@@ -14,7 +14,7 @@ function settingPopUp() {
   let historyPopUp = document.querySelector('.history');
   let byPopUp = document.querySelector('.programmedBy');
   let displayStatus = popUp.style.display;
-  
+
   if (displayStatus === "block") {
     popUp.style.display = "none";
     byPopUp.style.display = "none";
@@ -29,7 +29,7 @@ function historyPopUp() {
   let settingPopUp = document.querySelector('.settings');
   let byPopUp = document.querySelector('.programmedBy');
   let displayStatus = popUp.style.display;
-  
+
   if (displayStatus === "block") {
     popUp.style.display = "none";
     settingPopUp.style.display = "none"
@@ -45,7 +45,7 @@ function byPopUp() {
   let settingPopUp = document.querySelector('.settings');
   let historyPopUp = document.querySelector('.history');
   let displayStatus = popUp.style.display;
-  
+
   if (displayStatus === "block") {
     popUp.style.display = "none";
     historyPopUp.style.display = "none";
@@ -55,7 +55,14 @@ function byPopUp() {
   }
 }
 
-
+function closeAllPopUp() {
+  let popUp = document.querySelector('.programmedBy');
+  let settingPopUp = document.querySelector('.settings');
+  let historyPopUp = document.querySelector('.history');
+  historyPopUp.display = "none";
+  settingPopUp.display = "none";
+  popUp.style.display = "none";
+}
 
 function fullscreen() {
   let element = document.getElementById("fullscreen");
@@ -86,7 +93,7 @@ function exitFullscreen() {
   }
 }
 
-document.addEventListener('fullscreenchange', function(event) {
+document.addEventListener('fullscreenchange', function (event) {
   if (!document.fullscreenElement) {
     // Vollbildmodus wurde beendet
     let canvas = document.getElementById("canvas");
@@ -127,7 +134,7 @@ function gameStart() {
  * Initializes the game by setting up the canvas and creating a new World instance.
  */
 async function init() {
-  
+
   canvas = document.getElementById("canvas");
   initLevel();
   world = new World(canvas, keyboard);

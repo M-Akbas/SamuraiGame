@@ -3,43 +3,50 @@ body {
   display: flex;
   flex-direction: column;
   background-image: url("imgForDesign/background.main.png");
-  height: 100%;
-  width: 99%;
   background-size: 1000px;
   font-family: "Roboto", sans-serif;
 }
+
 .d-flex {
   display: flex;
   align-items: center;
   gap: 5px;
 }
+
 .fullscreen {
   cursor: pointer;
   object-fit: cover;
   height: 80px;
 }
+
 .fullscreenDiv {
   margin-left: 200px;
 }
+
 .safari-header {
   display: none !important;
 }
+
 .playAgainBtn {
   position: absolute;
   display: inline-block;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
-  background-color: #343a40; /* dunkler Hintergrund */
-  color: #fff; /* helle Schrift */
+  background-color: #343a40;
+  /* dunkler Hintergrund */
+  color: #fff;
+  /* helle Schrift */
   font-size: 24px;
-  font-family: "Montserrat", sans-serif; /* coole Schrift */
+  font-family: "Montserrat", sans-serif;
+  /* coole Schrift */
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 
   top: 50%;
   font-family: "Press Start 2P";
 }
+
 .menuSettings {
   border-radius: 20px;
   font-size: 22px;
@@ -48,9 +55,11 @@ body {
   background-color: #61536d;
   padding: 20px;
 }
+
 .spaceBar {
   height: 80px;
 }
+
 .settings1 {
   display: flex;
   flex-direction: column;
@@ -62,6 +71,7 @@ body {
   font-size: 18px;
   color: #b5b5b5;
 }
+
 .settings {
   border: 2px solid rgb(6, 6, 6);
   font-size: 20px;
@@ -78,6 +88,7 @@ body {
   height: 40vh;
   width: 30vw;
 }
+
 .history {
   border: 2px solid rgb(6, 6, 6);
   overflow-y: scroll;
@@ -94,6 +105,7 @@ body {
   height: 40vh;
   width: 30vw;
 }
+
 .programmedBy {
   border: 2px solid rgb(6, 6, 6);
   overflow-y: scroll;
@@ -110,6 +122,7 @@ body {
   height: 40vh;
   width: 30vw;
 }
+
 header {
   background-color: rgb(10, 10, 10);
   width: 100%;
@@ -118,6 +131,7 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+
 .muteImg {
   background-color: whitesmoke;
   border-radius: 50%;
@@ -130,10 +144,12 @@ header {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .box {
   position: absolute;
   height: 70px;
@@ -144,6 +160,7 @@ header {
 .muteImg:hover {
   background-color: #c83636db;
 }
+
 .logo {
   height: 80px;
   margin-left: 40px;
@@ -159,9 +176,11 @@ header {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
+
 .letter-d {
   height: 30px;
 }
+
 .btnOfMenu {
   padding: 10px 20px;
   font-size: 16px;
@@ -186,18 +205,18 @@ header {
 body::before {
   content: "";
   position: absolute;
-  background: rgba(
-    0,
-    0,
-    0,
-    0.588
-  ); /* Hier können Sie den Wert der Transparenz ändern */
+  background: rgba(0,
+      0,
+      0,
+      0.588);
+  /* Hier können Sie den Wert der Transparenz ändern */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -20;
 }
+
 .header-text {
   color: whitesmoke;
 
@@ -210,9 +229,11 @@ h1 {
 
   font-size: 95px;
 }
+
 h2 {
   color: rgba(245, 245, 245, 0.563);
 }
+
 #overlay {
   position: fixed;
   top: 0;
@@ -222,6 +243,7 @@ h2 {
   background-color: rgb(0, 0, 0);
   z-index: 9999;
 }
+
 #overlayMobile {
   position: fixed;
   top: 0;
@@ -232,30 +254,36 @@ h2 {
   z-index: 1;
   display: none;
 }
+
 #startButton {
   position: absolute;
   display: inline-block;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
-  background-color: #343a40; /* dunkler Hintergrund */
-  color: #fff; /* helle Schrift */
+  background-color: #343a40;
+  /* dunkler Hintergrund */
+  color: #fff;
+  /* helle Schrift */
   font-size: 24px;
-  font-family: "Montserrat", sans-serif; /* coole Schrift */
+  font-family: "Montserrat", sans-serif;
+  /* coole Schrift */
   cursor: pointer;
   transition: 225ms all ease-in;
   top: 50%;
   font-family: "Press Start 2P";
 }
 
-#startButton:hover{
+#startButton:hover {
   transform: scale(1.1);
 }
+
 #content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .btnOfMenu {
   margin-left: 10px;
   margin-right: 10px;
@@ -272,6 +300,7 @@ h2 {
 button:hover {
   background-color: #c11818d3;
 }
+
 .rotate {
   object-fit: contain;
   position: absolute;
@@ -289,59 +318,69 @@ button:hover {
   height: 200px;
   width: 720px;
 }
+
 .enemieAnimation {
   height: 400px;
   position: absolute;
   top: 40%;
   right: 20%;
 }
+
 .heroAnimation {
   height: 400px;
   position: absolute;
   top: 40%;
   left: 50%;
 }
+
 .animationHero {
   height: 400px;
   position: absolute;
   top: 18%;
-  left: -300px; /* Startposition: außerhalb des sichtbaren Bereichs */
+  left: -300px;
+  /* Startposition: außerhalb des sichtbaren Bereichs */
   animation-name: hero-enter;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
+
 .enemieAnimation {
   height: 500px;
   position: absolute;
   top: 17%;
-  right: -300px; /* Startposition: außerhalb des sichtbaren Bereichs */
+  right: -300px;
+  /* Startposition: außerhalb des sichtbaren Bereichs */
   animation-name: enemy-enter;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
+
 /* Animation-Regel */
 @keyframes enemy-enter {
   0% {
-    transform: translateX(
-      300px
-    ); /* Startposition: außerhalb des sichtbaren Bereichs */
+    transform: translateX(300px);
+    /* Startposition: außerhalb des sichtbaren Bereichs */
   }
+
   100% {
-    right: 2%; /* Zielposition: rechts mit 20% Abstand vom rechten Rand */
+    right: 2%;
+    /* Zielposition: rechts mit 20% Abstand vom rechten Rand */
   }
 }
 
 /* Animation-Regel */
 @keyframes hero-enter {
   0% {
-    transform: translateX(
-      -300px
-    ); /* Startposition: außerhalb des sichtbaren Bereichs */
+    transform: translateX(-300px);
+    /* Startposition: außerhalb des sichtbaren Bereichs */
   }
+
   100% {
-    left: 2%; /* Zielposition: links mit 20% Abstand vom linken Rand */
+    left: 2%;
+    /* Zielposition: links mit 20% Abstand vom linken Rand */
   }
 }
+
 #gameOverOverlay {
   position: absolute;
   top: 0;
@@ -351,6 +390,7 @@ button:hover {
   background-color: rgb(0, 0, 0);
   z-index: 999999;
 }
+
 .gameOver {
   font-family: "Press Start 2P";
   font-size: 70px;
@@ -365,14 +405,17 @@ button:hover {
   flex-direction: column;
   align-items: center;
 }
+
 .buttons {
   display: none;
 }
+
 /* smartphone */
 @media only screen and (max-width: 720px) {
   canvas {
     width: fit-content;
   }
+
   .buttons {
     display: block;
   }
@@ -380,21 +423,27 @@ button:hover {
   h1 {
     display: none;
   }
+
   h2 {
     display: none;
   }
+
   header {
     display: none;
   }
+
   #E-Img {
     display: none;
   }
+
   #H-Img {
     display: none;
   }
+
   .menu {
     display: none;
   }
+
   header {
     display: none;
   }
@@ -402,8 +451,8 @@ button:hover {
 
 @media only screen and (max-height: 480px) {
   canvas {
-    height: 100vh;
-    width: 100vw;
+    height: 100svh;
+    width: 100svw;
     margin-top: 0;
   }
 
@@ -414,15 +463,18 @@ button:hover {
     right: 0;
     height: 40px;
   }
+
   .buttons {
     display: block;
   }
+
   .topArrow {
     position: absolute;
     height: 50px;
     top: 80%;
     right: 14.75%;
   }
+
   .btnShuriken {
     position: absolute;
     height: 70px;
@@ -432,21 +484,27 @@ button:hover {
   h1 {
     display: none;
   }
+
   h2 {
     display: none;
   }
+
   header {
     display: none;
   }
+
   #E-Img {
     display: none;
   }
+
   #H-Img {
     display: none;
   }
+
   .gameOver {
     font-size: 20px;
   }
+
   .menu {
     display: none;
   }
@@ -463,30 +521,36 @@ button:hover {
     height: 420px;
     top: 21%;
   }
+
   .heroAnimation {
     height: 377px;
   }
 }
+
 @media (max-width: 1200px) {
   .enemieAnimation {
     height: 303px;
     top: 29%;
   }
+
   .heroAnimation {
     height: 288px;
     top: 48%;
   }
 }
+
 @media (max-width: 940px) {
   .enemieAnimation {
     height: 221px;
     top: 33%;
   }
+
   .heroAnimation {
     height: 210px;
     top: 51%;
   }
 }
+
 @media (max-width: 930px) {
   .title {
     font-size: 60px;
@@ -498,12 +562,14 @@ button:hover {
   height: 70px;
   top: 78%;
 }
+
 .rightArrow {
   position: absolute;
   height: 50px;
   top: 88%;
   right: 10%;
 }
+
 .leftArrow {
   position: absolute;
   height: 50px;
@@ -517,11 +583,13 @@ button:hover {
   top: 80%;
   right: 14.75%;
 }
+
 .btnShuriken {
   position: absolute;
   height: 70px;
   top: 58%;
 }
+
 @media (min-height: 480px) {
   .rotate {
     display: block;
@@ -534,10 +602,12 @@ button:hover {
     0% {
       transform: rotate(0deg);
     }
+
     100% {
       transform: rotate(360deg);
     }
   }
+
   #overlayMobile {
     display: block;
   }
@@ -552,6 +622,20 @@ button:hover {
 ::-webkit-scrollbar-thumb {
   background-color: #61536d;
 }
+
 ::-webkit-scrollbar {
   width: 10px;
+}
+
+
+.header-of-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-height:700px) {
+  #canvas {
+    width: 650px;
+    height: 400px;
+  }
 }
